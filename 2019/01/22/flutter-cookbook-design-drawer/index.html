@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg"},"articleBody":"Flutter Cookbook Design / Add a Drawer to a screen 대해 정리\nFlutter Cookbook Design / Add a Drawer to a screen - [원문](https://flutter.io/docs/cookbook/design/drawer)의 내용을 정리한다.\n\nScaffold\n\nmaterial library 에서 지원하는 기본 Layout 구조를 지원하는 구현체(클래스)\ndrawers, snack bars, bottom sheets을 지원한다.\n\nDrawer\n\nmaterial library 에서 지원하는 수평 슬라이드 메뉴\nDrawer를 사용하면 App상단에(AppBar) 햄버거 메뉴가 노출된다.\n\n\nDrawerHeader : Drawer의 상단 영역\nListTile : 목록 형태의 Item\n\nListTile의 opTap() 이벤트를 감지하여 Navigator.pop(context) 를 통해서 Drawer의 display를 제어\n\n\n\n![Drawer 화면1]\n![Drawer 화면2]\n","dateCreated":"2019-01-22T15:21:17+09:00","dateModified":"2019-01-22T15:24:54+09:00","datePublished":"2019-01-22T15:21:17+09:00","description":"","headline":"flutter_cookbook_design_drawer","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jaceshim.github.io/2019/01/22/flutter-cookbook-design-drawer/"},"publisher":{"@type":"Organization","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://jaceshim.github.io/2019/01/22/flutter-cookbook-design-drawer/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg"},"articleBody":"Flutter Cookbook Design / Add a Drawer to a screen 대해 정리\nFlutter Cookbook Design / Add a Drawer to a screen - [원문](https://flutter.io/docs/cookbook/design/drawer)의 내용을 정리한다.\n\nScaffold\n\nmaterial library 에서 지원하는 기본 Layout 구조를 지원하는 구현체(클래스)\ndrawers, snack bars, bottom sheets을 지원한다.\n\nDrawer\n\nmaterial library 에서 지원하는 수평 슬라이드 메뉴\nDrawer를 사용하면 App상단에(AppBar) 햄버거 메뉴가 노출된다.\n\n\nDrawerHeader : Drawer의 상단 영역\nListTile : 목록 형태의 Item\n\nListTile의 opTap() 이벤트를 감지하여 Navigator.pop(context) 를 통해서 Drawer의 display를 제어\n\n\n\nPreview\nDrawer 화면1\n\nDrawer 화면2\n\n","dateCreated":"2019-01-22T15:21:17+09:00","dateModified":"2019-01-22T17:02:52+09:00","datePublished":"2019-01-22T15:21:17+09:00","description":"","headline":"flutter_cookbook_design_drawer","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jaceshim.github.io/2019/01/22/flutter-cookbook-design-drawer/"},"publisher":{"@type":"Organization","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://jaceshim.github.io/2019/01/22/flutter-cookbook-design-drawer/"}</script>
     <meta name="description" content="Flutter Cookbook Design / Add a Drawer to a screen 대해 정리 Flutter Cookbook Design / Add a Drawer to a screen - [원문](https://flutter.io/docs/cookbook/design/drawer)의 내용을 정리한다.  Scaffold  material librar">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="flutter_cookbook_design_drawer">
@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://jaceshim.github.io/2019/01/22/flutter-cookbook-design-drawer/drawer1.png">
 <meta property="og:image" content="http://jaceshim.github.io/2019/01/22/flutter-cookbook-design-drawer/drawer1.png">
-<meta property="og:updated_time" content="2019-01-22T06:24:54.000Z">
+<meta property="og:updated_time" content="2019-01-22T08:02:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flutter_cookbook_design_drawer">
 <meta name="twitter:description" content="Flutter Cookbook Design / Add a Drawer to a screen 대해 정리 Flutter Cookbook Design / Add a Drawer to a screen - [원문](https://flutter.io/docs/cookbook/design/drawer)의 내용을 정리한다.  Scaffold  material librar">
@@ -36,9 +36,11 @@
     
     
     
+    <link rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css">	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css">      
     <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
-    <!--STYLES END-->
+    <link rel="stylesheet" href="/assets/css/style-mvtem672pzagtylqnxghv8igzzihzmu6doh8ujbjo2df5dntcg6nlbpe0aux.min.css">
+    <!--STYLES END-->  
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132758769-1"></script>
     <script>
@@ -223,8 +225,11 @@ drawers, snack bars, bottom sheets을 지원한다.</p>
 </ul>
 </li>
 </ul>
-<p>![Drawer 화면1]<img src="/2019/01/22/flutter-cookbook-design-drawer/drawer1.png"></p>
-<p>![Drawer 화면2]<img src="/2019/01/22/flutter-cookbook-design-drawer/drawer1.png"></p>
+<h3 id="preview">Preview</h3>
+<p>Drawer 화면1</p>
+<img src="/2019/01/22/flutter-cookbook-design-drawer/drawer1.png">
+<p>Drawer 화면2</p>
+<img src="/2019/01/22/flutter-cookbook-design-drawer/drawer1.png">
 
             
 
@@ -451,7 +456,7 @@ drawers, snack bars, bottom sheets을 지원한다.</p>
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
-<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<script src="/assets/js/script-rcbrs65kebrdscluigixuyzpu4eavnc3xwpyhojzjzgvq6h6rb6plpiyzylh.min.js"></script>
 <!--SCRIPTS END-->
 
     
