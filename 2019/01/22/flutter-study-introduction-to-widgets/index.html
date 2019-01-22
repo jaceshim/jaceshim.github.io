@@ -6,24 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="JACE SHIM">
-    <title>flutter_study_layout - JACE SHIM</title>
+    <title>flutter_study_introduction_to_widgets - JACE SHIM</title>
     <meta name="author" content="Jace Shim">
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg"},"articleBody":"Flutter Layout에 대해 정리\nFlutter Layout - [원문](https://flutter.io/docs/development/ui/layout)의 내용을 정리한다.\n\nWidget\n\n플루터의 Widget은 UI를 만드는데 사용되는 class 임.\nWidget은 layout 및 UI요소를 만드는데 사용된다.\n플루터 layout 메커니즘의 핵심은 Widget 임, 거의 모든것이 Widget이고, 심지어 model 들도 Widget 임.\n\n보이는 Widget : images, icons, text\n보이지 않는 Widget : rows, columns, grids\n\n\n\nContainer\n\n컨테이너 위젯은 child 위젯을 커스터마이징 할 수 있는 위젯이다.\npadding, margin, border, background color 등을 사용하여 이름을 지정하려면 컨테이너 위젯을 써야 한다.\n\nLayout a Widget ( 위젯 배치 )\n\napp 자체도 Widget 이다.\ndefault banner, background color, drawers, snack bars, bottom sheets 등을 추가하기 위한 API가 존재하는 Material Components의 Scaffold를 사용하는게 가장 쉽다.\n\n","dateCreated":"2019-01-18T20:17:19+09:00","dateModified":"2019-01-20T14:20:28+09:00","datePublished":"2019-01-18T20:17:19+09:00","description":"","headline":"flutter_study_layout","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jaceshim.github.io/2019/01/18/flutter-study-layout/"},"publisher":{"@type":"Organization","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://jaceshim.github.io/2019/01/18/flutter-study-layout/","keywords":"flutter,flutter_layout,플루터,레이아웃"}</script>
-    <meta name="description" content="Flutter Layout에 대해 정리 Flutter Layout - [원문](https://flutter.io/docs/development/ui/layout)의 내용을 정리한다.  Widget  플루터의 Widget은 UI를 만드는데 사용되는 class 임. Widget은 layout 및 UI요소를 만드는데 사용된다. 플루터 layout 메커니즘의 핵심">
-<meta name="keywords" content="flutter,flutter_layout,플루터,레이아웃">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg"},"articleBody":"","dateCreated":"2019-01-22T15:21:02+09:00","dateModified":"2019-01-22T15:21:02+09:00","datePublished":"2019-01-22T15:21:02+09:00","description":"","headline":"flutter_study_introduction_to_widgets","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/"},"publisher":{"@type":"Organization","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/"}</script>
+    <meta name="description" content="Software developer, Baseball Player">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="flutter_study_layout">
-<meta property="og:url" content="http://jaceshim.github.io/2019/01/18/flutter-study-layout/index.html">
+<meta property="og:title" content="flutter_study_introduction_to_widgets">
+<meta property="og:url" content="http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/index.html">
 <meta property="og:site_name" content="JACE SHIM">
-<meta property="og:description" content="Flutter Layout에 대해 정리 Flutter Layout - [원문](https://flutter.io/docs/development/ui/layout)의 내용을 정리한다.  Widget  플루터의 Widget은 UI를 만드는데 사용되는 class 임. Widget은 layout 및 UI요소를 만드는데 사용된다. 플루터 layout 메커니즘의 핵심">
+<meta property="og:description" content="Software developer, Baseball Player">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-20T05:20:28.000Z">
+<meta property="og:updated_time" content="2019-01-22T06:21:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="flutter_study_layout">
-<meta name="twitter:description" content="Flutter Layout에 대해 정리 Flutter Layout - [원문](https://flutter.io/docs/development/ui/layout)의 내용을 정리한다.  Widget  플루터의 Widget은 UI를 만드는데 사용되는 class 임. Widget은 layout 및 UI요소를 만드는데 사용된다. 플루터 layout 메커니즘의 핵심">
+<meta name="twitter:title" content="flutter_study_introduction_to_widgets">
+<meta name="twitter:description" content="Software developer, Baseball Player">
     
     
         
@@ -181,14 +180,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            flutter_study_layout
+            flutter_study_introduction_to_widgets
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2019-01-18T20:17:19+09:00">
+    <time datetime="2019-01-22T15:21:02+09:00">
 	
-		    Jan 18, 2019
+		    Jan 22, 2019
     	
     </time>
     
@@ -200,43 +199,12 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h2 id="flutter-layout에-대해-정리">Flutter Layout에 대해 정리</h2>
-<pre><code>Flutter Layout - [원문](https://flutter.io/docs/development/ui/layout)의 내용을 정리한다.
-</code></pre>
-<h3 id="widget">Widget</h3>
-<ul>
-<li>플루터의 <code>Widget</code>은 UI를 만드는데 사용되는 <code>class</code> 임.</li>
-<li><code>Widget</code>은 <code>layout</code> 및 <code>UI</code>요소를 만드는데 사용된다.</li>
-<li>플루터 <code>layout</code> 메커니즘의 핵심은 <code>Widget</code> 임, 거의 모든것이 <code>Widget</code>이고, 심지어 <code>model</code> 들도 <code>Widget</code> 임.
-<ul>
-<li>보이는 <code>Widget</code> : images, icons, text</li>
-<li>보이지 않는 <code>Widget</code> : rows, columns, grids</li>
-</ul>
-</li>
-</ul>
-<h3 id="container">Container</h3>
-<ul>
-<li>컨테이너 위젯은 child 위젯을 커스터마이징 할 수 있는 위젯이다.</li>
-<li>padding, margin, border, background color 등을 사용하여 이름을 지정하려면 컨테이너 위젯을 써야 한다.</li>
-</ul>
-<h3 id="layout-a-widget-위젯-배치">Layout a Widget ( 위젯 배치 )</h3>
-<ul>
-<li><code>app</code> 자체도 <code>Widget</code> 이다.</li>
-<li><code>default banner</code>, <code>background color</code>, <code>drawers</code>, <code>snack bars</code>, <code>bottom sheets</code> 등을 추가하기 위한 API가 존재하는 <code>Material Components</code>의 <code>Scaffold</code>를 사용하는게 가장 쉽다.</li>
-</ul>
-
+            
             
 
         </div>
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
-        
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">TAGGED IN</span><br>
-                
-    <a class="tag tag--primary tag--small t-link" href="/tags/flutter-flutter-layout-플루터-레이아웃/">flutter,flutter_layout,플루터,레이아웃</a>
-
-            </div>
         
         
             <div class="post-actions-wrap">
@@ -245,7 +213,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/20/flutter-study-introduction-to-widgets/" data-tooltip="flutter_study_introduction_to_widgets" aria-label="PREVIOUS: flutter_study_introduction_to_widgets">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/22/flutter-cookbook-design-drawer/" data-tooltip="flutter_cookbook_design_drawer" aria-label="PREVIOUS: flutter_cookbook_design_drawer">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -253,7 +221,8 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/22/flutter-study-layout/" data-tooltip="flutter_study_layout" aria-label="NEXT: flutter_study_layout">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -271,7 +240,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/18/flutter-study-layout/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/" title="Share on Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -279,7 +248,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/18/flutter-study-layout/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/" title="Share on Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -287,7 +256,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/18/flutter-study-layout/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/" title="Share on Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -330,7 +299,7 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/20/flutter-study-introduction-to-widgets/" data-tooltip="flutter_study_introduction_to_widgets" aria-label="PREVIOUS: flutter_study_introduction_to_widgets">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/22/flutter-cookbook-design-drawer/" data-tooltip="flutter_cookbook_design_drawer" aria-label="PREVIOUS: flutter_cookbook_design_drawer">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -338,7 +307,8 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/22/flutter-study-layout/" data-tooltip="flutter_study_layout" aria-label="NEXT: flutter_study_layout">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -356,7 +326,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/18/flutter-study-layout/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/" title="Share on Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -364,7 +334,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/18/flutter-study-layout/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/" title="Share on Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -372,7 +342,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/18/flutter-study-layout/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/" title="Share on Google+">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -400,7 +370,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/18/flutter-study-layout/">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/">
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
                     </a>
                 </li>
@@ -408,7 +378,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/18/flutter-study-layout/">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/">
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
                     </a>
                 </li>
@@ -416,7 +386,7 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/18/flutter-study-layout/">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/22/flutter-study-introduction-to-widgets/">
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
                     </a>
                 </li>
