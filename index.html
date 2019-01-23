@@ -183,55 +183,98 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title">
                     
-                        <a class="link-unstyled" href="/2019/01/22/flutter-cookbook-design-drawer/">
-                            flutter_cookbook_design_drawer
+                        <a class="link-unstyled" href="/2019/01/22/flutter-study-about-flutter/">
+                            flutter_study_about_flutter
                         </a>
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2019-01-22T15:21:17+09:00">
+    <time datetime="2019-01-22T19:11:08+09:00">
 	
 		    Jan 22, 2019
     	
     </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Development/">Development</a>
-
-
     
 </div>
 
             </div>
             
                 <div class="postShorten-content">
-                    <h2 id="flutter-cookbook-design-add-a-drawer-to-a-screen-대해-정리">Flutter Cookbook Design / Add a Drawer to a screen 대해 정리</h2>
-<pre><code>Flutter Cookbook Design / Add a Drawer to a screen - [원문](https://flutter.io/docs/cookbook/design/drawer)의 내용을 정리한다.
-</code></pre>
-<h3 id="scaffold">Scaffold</h3>
-<blockquote>
-<p><a href="https://docs.flutter.io/flutter/material/material-library.html" target="_blank" rel="noopener"><code>material library</code></a> 에서 지원하는 기본 Layout 구조를 지원하는 구현체(클래스)<br>
-drawers, snack bars, bottom sheets을 지원한다.</p>
+                    <blockquote>
+<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 원자의 허락하에 번역한것 입니다.<br>
+다시 한번 원 저작자 Eric Windmill에게 감사를 전합니다.</p>
 </blockquote>
-<h3 id="drawer">Drawer</h3>
+<h1>Flutter란</h1>
+<p><a href="https://flutter.io" target="_blank" rel="noopener">Flutter</a>는 모든 사람이 아름다운 모바일 앱을 개발 할 수 있도록 지원하는 모바일 SDK이다.<br>
+당신이 웹개발자 세계에서 왔든 native 모바일 개발자 세계에서 왔든 관계없이 프레임웤 (역자주: android, ios)을 제어(사용) 하지 않고 친숙하고 단순한 방식으로 모바일 앱을 보다 쉽게 만 들 수 있다.</p>
+<p>이글을 쓰는 시점에서 <code>Google AdWords</code>와 <code>Alibaba</code> 모두 플루터를 사용하고 있다.<br>
+플루터 웹사이트의 <a href="https://flutter.io/showcase" target="_blank" rel="noopener">showcase 페이지</a>에서 풀루터의 사용하고 있는 사례를 볼 수 있다.</p>
+<p>요즘 풀루터에 대해 말이 많다. 내가 종종보는 질문은 <code>&quot;Flutter랑 React Native 중에 어떤걸 사용해야 하냐?&quot;</code><br>
+모든 프로그래밍과 마찬가지로 당신이 하고자 하면 tradeoffs(이율 배반)가 따른다.</p>
+<p>나는 당신에게 플루터가 모바일 앱 개발을 위한 최선의 선택이라는 것을 확신 시키기 위해 노력할 것이다.</p>
+<p>나는 플루터가 다른 <code>cross platform framework</code>보다 뛰어나다고 믿으며 아마 native 개발보다 나을것이다. ( - 약간의 설명이 필요하긴 함. )</p>
+<p>그전에 <a href="https://www.dartlang.org/" target="_blank" rel="noopener">Dart</a> 프로그래밍 언어 부터 시작해서 플루터는 무엇이고 무엇이 아닌지 빠르게 살펴 보겠다.</p>
+<h2 id="dart란">Dart란?</h2>
+<p><a href="https://www.dartlang.org/" target="_blank" rel="noopener">Dart</a>는 구글에서 만든 프로그래밍 언어로 플루터를 작성하는데 사용됐다.<br>
+다트는 구글이 <code>Javascript</code> 보다 <code>server side</code>및 <code>front-end</code>코드를 작성하는데 더 나은 언어를 원했기 때문에 만들어 졌다.</p>
+<p>내가 알기로는, 자바스크립트에서 가장 중요한 문제는 승인을 위한 거대 위원회와 이를 구현하기 위한 여러 브라우저 공급업체에 의존하기 때문에 새로운 기능을 업데이트 하기가 느리다는 것이다.</p>
+<p>구글은 자바스크립트를 직업 사용할 것인지 아닌지에 대한 일련의 결정 후에 의미적으로 자바스크립트 내부에 맞는 언어를 만들기로 결정했다.<br>
+다시 말하자면 다트에서 작성되는 모든것은 자바스크립트로 컴파일 할 수 있고 이것이 구글이 <code>Java</code>를 사용하지 않은 이유이다. - 이는 의미상 큰것이다.</p>
 <blockquote>
-<p><code>material library</code> 에서 지원하는 수평 슬라이드 메뉴<br>
-<code>Drawer</code>를 사용하면 App상단에(<code>AppBar</code>) 햄버거 메뉴가 노출된다.</p>
+<p><a href="https://gist.github.com/paulmillr/1208618" target="_blank" rel="noopener">링크</a>는 2010년 구글에서 유출된 이메일 체인 이다. 그들이 자바스크립트에 대해 뭔가 해야 한다는걸 결정한 것은 <code>예수께 이르는</code> 순간 이다.(역자주: 예수께 이르다는것은 무엇으로 부터 구원을 얻을것이라 이해.)</p>
 </blockquote>
+<p>하지만 좋은 소식이 있다. 다트는 <code>safe</code> 언어를 배우는 데 탁월하다. 구글은 다트로 어떤 혁신적인것을 만들기 위해 시작하지 않았다. 그들은 단순하고 생산적이며 자바스크립트로 컴파일 될 수 있는 언어를 만들고자 했다.</p>
+<p>구문에는 특별히 흥미로운것도 없으며 당신을 혼란스럽게 할 특별한 연산자도 없다.<br>
+다트(자바스크립트와는 달리)에는 <code>true</code>와 <code>false</code>를 말하는 한 가지 방법만 있다.</p>
+<p>자바스크립트에서 다음은 true로 인식된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (3) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>위 코드는 다트에선 당신의 프로그램을 날려버릴 것이다. 다트는 핵심적으로 생산적이고 예측 가능하며 간단한 언어이다. 이것은 중요하다, 왜냐면 플루터에서 앱을 작성하는것은 단순히 다트를 작성하는 것이기 때문이다. 플루터는 하부에 다트 라이브러리 클래스들이 있다. <code>markup 언어</code>와 연관되었거나 <code>JSX</code>스타일 하이브리드 언어는 없다. 든 프런트 엔드 코드는 Dart로 작성됩니다. No HTML, No CSS.</p>
+<h2 id="플루터가-다트를-사용하는-이유는">플루터가 다트를 사용하는 이유는?</h2>
+<p>만약 여러분이 문자 그대로 다른 배경에서 온 것이라면, 여러분은 아마도 플루터가 자바스크립트가 아니라 다트를 사용한다는 사실에 대해 불평했을 것이다. (개발자들은 믿거나 말거나 독선적이다.)<br>
+그리고 선택에 회의적인 이유는 있다. 요즘 유행하는 언어가(다트가) 아니라는 것이다. 다트는 심지어 가장 많이 사용되는 상위 25개 언어들중 하나가 아니다. 뭐라구요? 구글이 자사의 언어라서 사용했다구요? 나는 그것도 맞는 소리라고 생각하지만 실용적인 이유도 있다.</p>
 <ul>
-<li>DrawerHeader : Drawer의 상단 영역</li>
-<li>ListTile : 목록 형태의 Item
+<li>다트는 JIT(Just In Time)컴파일과 AOT(Ahread Of Time)컴파일을 모두 지원한다.
 <ul>
-<li>ListTile의 opTap() 이벤트를 감지하여 <code>Navigator.pop(context)</code> 를 통해서 Drawer의 display를 제어</li>
+<li>AOT컴파일러는 다트를 효율적인 native code로 변경한다. 이것은 플루터를 빠르게 만들ㅣ만, (사용자와 개발자에게 승리) 거의 모든 프레임웤이 다드로 작성되었음을 의미 한다. 개발자들이 모든 것을 사용자 정의 한다는 의미이다.</li>
+<li>다트의 옵션인 JIT컴파일은 <code>hot-reloading</code>을 가능케 한다. 빠른 개발과 반복은 플루터 사용 즐거움의 핵심이다. 텍스트 편집기에 코드를 저장하면 시뮬레이터상의 앱이 1초 이내에 업데이트 된다.</li>
 </ul>
 </li>
+<li>다트는 객체 지향 언어다. 이것은 다트만으로 시각적 사용자 경험을 쉽게 작성 할 수 있게 해주며, <code>markup language</code>가 필요하지 않다.</li>
+<li>다트는 생산적이고 예측 가능한 언어이다. 배우기 쉽고 친숙한 느낌이 든다. 당신이 <code>동적언어(dynamic language)</code> 또는 <code>정적언어(static language)</code>를 사용 해왔든 지간에 쉽게 시작 할 수 있다.</li>
+<li>그리고 나는 같은 회사에서 만든 언어를 사용하는 것이 매우 매력적이라고 생각한다. 왜냐하면 플러터 팀은 다트 팀과 협력하여 새로운 필요한 기능을 구현할 수 있었기 때문이다.</li>
 </ul>
-<h3 id="preview">Preview</h3>
-<p>Drawer 화면1</p>
-<img src="/2019/01/22/flutter-cookbook-design-drawer/drawer1.png">
-<p>Drawer 화면2</p>
-<img src="/2019/01/22/flutter-cookbook-design-drawer/drawer1.png">
+<h2 id="flutter-vs-react-native-및-기타-선택">Flutter vs. React Native ( 및 기타 선택 )</h2>
+<p>그전에 다른 옵션에 대한 내 의견을 제시하기 전에 이 결정을 분명히하고 싶습니다. 플푸터는 100% 정답이 아니다. 그것은 도구이고 우리는 당면한 일에 적합한 도구를 선택해야 한다는것이다. 즉 나는 이것이 미래에 당신이 강력하게 고려해야 할 것이라고 주장 할뿐이다.</p>
+<h2 id="native-develoment-ios-and-android">Native develoment(iOS and Android)</h2>
+<p>당신의 첫번째 선택은 <code>iOS</code>와 <code>Android</code>용 native app을 작성하는 것이다. 이것은 최대한의 제어와 디버깅 도구 및 (잠재적으로) 성능 좋은 응용 그램을 제공한다. 이말은 회사에서 모든것(개발대상)을 각 플랫폼마다 두번씩 작성해야 한다는것을 의미한다. 서로 쉽게 도울 수 없는 다른기술을 가진 다른팀의 다른 개발자가 필요할 것이다.</p>
+<h2 id="react-native-webviews-and-other-cross-platform-javascript-options">React Native, WebViews, and other cross-platform JavaScript options</h2>
+<p>당신의 두번째 선택은 <code>WebView</code>나 <code>React Native</code>와 같은 자바스크립트 기반의 <code>cross-platform</code> 이다. 이것들은 나쁜 선택이 아니다. 네이티브 개발로 겪는 문제가 사라진다. 팀의 모든 프론트엔드 웹 개발자는 최신 자바스크립트 기술만 있으면 이를 지원할 수 있다.<br>
+이것은 왜 AirBnb, Facebook, Twitter와 같은 대기업이 핵심 제품(서비스)에 <code>React Native</code>를 사용한 이유 이다.(AirBnb는 최근 아래 설명할 몇가지 이유로 인해 React Native 사용을 중지 한다고 <a href="https://medium.com/airbnb-engineering/sunsetting-react-native-1868ba28e30a" target="_blank" rel="noopener">발표</a>했다.</p>
+<p>크로스 플랫폼으로 구축되는 최초의 모바일 앱은 <code>WebKit</code>(브라우저 렌더링 엔진)에서 실행되는 간단한 <code>WebViews</code> 일 뿐이다. 문자 그대로 웹페이지가 내장 되어 있다. 이것의 문제는 기본적으로 DOM조작이 매우 비싸고 훌륭한 모바일 경험(UX)을 만들 만큼 성능이 좋지 않다는 것이다.<br>
+일부 플래폼에선 <code>Javascript Bridge</code>를 구축하여 이 문제를 해결 하였다. 이 브릿지는 자바스크립트가 네이티브 위젯과 직접 대화(통신) 할 수 있게 한다. 이것은 <code>WebViews</code>보다 훨씬 더 효과적이다. 왜냐면 DOM을 제어하기 때문이다. 그러나 여전히 이상적이진 않다.<br>
+앱이 렌더링 엔진과 직접 대화(통신)할때 마다 <code>cross the bridge</code> 하기 위해 네이티브 코드로 컴파일 되어야 한다.<br>
+단일 상호 작용에서 브릿지는는 두 번 교차해야 한다. 한번은 플랫폼에서 앱으로 그리고 다시 앱에서 플랫폼으로.<br><br><br>
+<img src="https://css-tricks.com/wp-content/uploads/2018/08/flutter-01.png" alt="Single interaction"></p>
+<p>플루터는 <code>Chrome</code>에서 사용되는 렌더링 엔진인 <a href="https://skia.org/" target="_blank" rel="noopener">Skia</a> 라는 자체 렌더링 엔진를 사용하기 때문에 다르다. <code>Skia</code>는 플루터 앱과 통신 할 수 있다. 그 결과 플루터는 먼저 Javascript로 컴파일 해야 하는게 아니라 로컬 이벤트를 직접 받아 들인다.<br>
+이것은 플루터가 기본 ARM코드로 컴파일 되기 때문에 본질적으로 가능하다. 이것이 성공의 비결이다. 당신의 앱이 사용자의 장치에서 작동하면 이 앱은 전적으로 장치의 운영 체제가 기대하는 언어로 작동한다.<br><br><br>
+<img src="https://css-tricks.com/wp-content/uploads/2018/08/flutter-02.png" alt=""></p>
+<p><code>Javascript bridge</code>는 확실히 현대적 프로그래밍의 경이로운 부분이지만, 세 가지 큰 문제가 존재한다. <br><br>
+첫번째 문제는 디버깅이 어렵다. 런 타임 컴파일러에 오류가 있을 경우, 해당 오류를 자바스크립트 브릿지를 통해 추적하여 자바스크립트 코드에서 찾아야 한다. 마크업 또는 CSS와 같은 구문 일 수도 있다. 디버거 자체는 우리가 원하는 만큼 잘 작동하지 않을 수도 있다.</p>
+<p>두번째로 큰 문제는 성능입니다. 자바스크립트 브릿지는 매우 비싸다. 앱에서 무언가 탭(tapped)될 때마다 해당 이벤트가 브릿지를 통해 자바스크립트 앱으로 전송되어야 한다. 그 결과 더 나은 용어는 jank 이다. (jank는 bad, poort, subks와 비슷한 의미로 x같다. 정도로 해석됨. )</p>
+<p>세번째로 큰 문제는 <a href="https://medium.com/airbnb-engineering/sunsetting-react-native-1868ba28e30a" target="_blank" rel="noopener">AirBnb에 따르면</a> 그들은 자신들이 원하던 것보다 더 자주 기본 코드에 들어가야 하는 것을 발견했다고 한다. 그것은 대부분 자바스크립트 개발자로 구성된 팀들의 문제였다.그들은 그들이 원했던것 보다 더 자주 native code를 파봐야 했다는 것을 발견했다. 이는 주로 자바스크립트로 구성된 팀의 문제였다.<br>
+(심사위원들은 여전히 플루터의 문제에 대해 언급하고 있지만, 난 결코 내 직장에서 네이티브 코드를 쓰려고 하지 않았다고 말할 수 있다. 팀원 중 일부는 <code>Object-C</code> 및 <code>Java</code>용 플러그인을 만들었다.)</p>
+<h2 id="플루터의-즉각적인-이점">플루터의 즉각적인 이점</h2>
+<p>이 글을 읽고 있으니 플루터에 관심이 있을 수도 있지만… 회의적일 수도 있다. 나는 당신이 기술 검증에 얼마나 철저한지 감탄한다.<br>
+당신의 회의적인 이유는 타당하다. 그것은 새로운 기술이다. 이는 API의 변경사항을 깨뜨리는 것을 의미 한다. 이는 중요한 기능 (예: 구글지도)에 대한 지원이 누락 되었음을 의미한다. 구글이 언젠가 그것을 포기 할 수도 있다.</p>
+<p>그리고 당신이 다트가 훌륭한 언어라고 믿는 사실에도 불구하고, 다트가 널리 사용되지 않고 당신이 원하는 <code>third-party</code> 라이브가 존재하지 않을 수도 있다는 사실은 변하지 않는다.</p>
+<p>하지만 나는 그 모든 점들에 대해 논쟁을 벌일 것이다. 구글은 <code>Google AdWords</code>를 포함한 주요 수익 창출 앱에서 내부적으로 플루터를 사용하기 때문에 API는 바뀔것 같지 않다.</p>
+<p>다트는 최근 버전2로 변경됐는데, 이것은 많이 변경될때까지 시간이 걸릴 것이라는 것을 의미한다. 컴퓨터 세계에서 사실상 영구적인 변경이 도입 되기까지는 수년이 걸릴 것이다.</p>
+<p>맞습니다. 실제로 누락된 기능들도 있지만 플루터는 당신에게 당신 고유의 native 플러그인을 추가 할 수 있는 완전한 제어권을 제공한다.<br>
+사실 <code>map</code>, <code>camera</code>, <code>location service</code>, <code>device storage</code>와 같은 가장 중요한 <code>operationg system</code>플러그인은 이미 존재한고 다트와 플루터의 생태계 커뮤니티도 존재한다. 물론 자바스크립트 커뮤니티보다 훨씬 작지만 간결하다고 주장 할것이다. 나는 매일 새로운 패키지를 만드는 대신 기존 패키지에 기여 하는 사람들을 봤다.</p>
+<p>이제 플루터의 구체적인 이점에 대해 얘기해 보자.</p>
+<h2 id="no-javascript-bridge">No JavaScript bridge</h2>
+<p>이것은 개발 및 응용프로그램의 성능에서 주요 병목이다. 다시 말하지만 이것은 jank로 이어진다. (위에도 jank에 대해 언급 했지만 한마니도 x같다.임)<br>
+스크롤이 매끄럽지 않고 항상 성능이 좋은것도 아니고 디버깅 하기도 어렵다.</p>
 
                     
                         
@@ -239,134 +282,7 @@ drawers, snack bars, bottom sheets을 지원한다.</p>
                     
                     
                         <p>
-                            <a href="/2019/01/22/flutter-cookbook-design-drawer/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/22/flutter-study-introduction-to-widgets/">
-                            flutter_study_introduction_to_widgets
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-22T15:21:02+09:00">
-	
-		    Jan 22, 2019
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Development/">Development</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h2 id="flutter-widget에-대해-정리">Flutter Widget에 대해 정리</h2>
-<pre><code>Flutter Introduction to Widgets - [원문](https://flutter.io/docs/development/ui/widgets-intro)의 내용을 정리한다.
-</code></pre>
-<ul>
-<li>Flutter widgets은 <a href="https://reactjs.org/" target="_blank" rel="noopener"><code>React</code></a>로 부터 영감을 얻어 만들어진 <code>modern react-style</code> 프레임웤이다.</li>
-<li></li>
-</ul>
-
-                    
-                        
-
-                    
-                    
-                        <p>
-                            <a href="/2019/01/22/flutter-study-introduction-to-widgets/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/22/flutter-study-layout/">
-                            flutter_study_layout
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-22T15:20:15+09:00">
-	
-		    Jan 22, 2019
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Development/">Development</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h2 id="flutter-layout에-대해-정리">Flutter Layout에 대해 정리</h2>
-<pre><code>Flutter Layout - [원문](https://flutter.io/docs/development/ui/layout)의 내용을 정리한다.
-</code></pre>
-<h3 id="widget">Widget</h3>
-<ul>
-<li>플루터의 <code>Widget</code>은 UI를 만드는데 사용되는 <code>class</code> 임.</li>
-<li><code>Widget</code>은 <code>layout</code> 및 <code>UI</code>요소를 만드는데 사용된다.</li>
-<li>플루터 <code>layout</code> 메커니즘의 핵심은 <code>Widget</code> 임, 거의 모든것이 <code>Widget</code>이고, 심지어 <code>model</code> 들도 <code>Widget</code> 임.
-<ul>
-<li>보이는 <code>Widget</code> : images, icons, text</li>
-<li>보이지 않는 <code>Widget</code> : rows, columns, grids</li>
-</ul>
-</li>
-</ul>
-<h3 id="container">Container</h3>
-<ul>
-<li>컨테이너 위젯은 child 위젯을 커스터마이징 할 수 있는 위젯이다.</li>
-<li>padding, margin, border, background color 등을 사용하여 이름을 지정하려면 컨테이너 위젯을 써야 한다.</li>
-</ul>
-<h3 id="layout-a-widget-위젯-배치">Layout a Widget ( 위젯 배치 )</h3>
-<ul>
-<li><code>app</code> 자체도 <code>Widget</code> 이다.</li>
-<li><code>default banner</code>, <code>background color</code>, <code>drawers</code>, <code>snack bars</code>, <code>bottom sheets</code> 등을 추가하기 위한 API가 존재하는 <code>Material Components</code>의 <code>Scaffold</code>를 사용하는게 가장 쉽다.</li>
-</ul>
-
-                    
-                        
-
-                    
-                    
-                        <p>
-                            <a href="/2019/01/22/flutter-study-layout/#post-footer" class="postShorten-excerpt_link link">
+                            <a href="/2019/01/22/flutter-study-about-flutter/#post-footer" class="postShorten-excerpt_link link">
                                 Comment and share
                             </a>
                         </p>
