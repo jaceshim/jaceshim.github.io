@@ -252,6 +252,22 @@ fjs.parentNode.insertBefore(js, fjs);
 이것이 Material과 Cupertino 위젯의 역할이다. Android앱처럼 보여주게 디자인된 Material과 iOS처럼 보여주게 디자인된 Cupertino.(역자주: 새로운 프로젝트를 위해서 수 많은 UI컴포넌트들이 필요한데 이런 작업들을 편리하도록 플러터는 Android와 iOS UI스타일에 맞게 디자인된 Material과 Cupertino 위젯음 기본 제공하므로 굉장히 편리하다.)</p>
 <p>위젯에 내장된 이러한 기능과 완전한 사용자 정의 위젯을 만드는 능력은 당신에게 많은 힘(도움)을 준다. low-level custom 위젯으로 완전한 custom앱을 만들거나 MVP(역자주 : Minimum Value Product - 최소 기능 제품)에 도달하기 위해 주어진 기능을 사용하여 만들 수도 있다.</p>
 <h2 id="most-common-widgets">Most Common Widgets</h2>
+<p>다음은 즉시 사용할 준비가 된 위젯이다. 다음과 같은 위젯에 매우 익숙해 져야 한다.</p>
+<ul>
+<li>Text : 단순히 화면에 텍스트를 표시하는 위젯.</li>
+<li>Image : 이미지를 표시.</li>
+<li>Icon : 플러터의 내장된 Material과 Cupertino 아이콘을 표시.</li>
+<li>Container : 플러터 UI에서 <code>div</code> 같은거라 보면 됌. 패딩, 정렬, 위젯의 크기 조절, 다른 것들의 boatloads(역자주: 앞서 설명한 요소들을 담을 수 있는것) 를 추가 할 수 있는 편리한 위젯. 비어 있을땐 0px 공간을 자치함.</li>
+<li>TextInput : 사용자 의견을 처리.(역자주: 사용자 입력 폼)</li>
+<li>Row, Column : 수평 또는 수직 방향으로 child(자식) 목록을 표시. 레이아웃을 위한 <code>flex-box</code> 규칙을 따른다.</li>
+<li>Stack : 스택은 하나 이상의 다른 자식을 목록에 표시한다. 이 기능은 CSS의 <code>position</code> 속성과 매우 유사하다.</li>
+<li>Scaffold : 앱의 기본 레이아웃 구조를 제공하는 앱내 모든 페이지의 root이다. <code>bottom navigations</code>(하단 메뉴), <code>appBar</code>(상단 타이틀 bar), <code>back buttons</code> (이전 버튼) 등을 쉽게 구현 할 수 있다.</li>
+</ul>
+<p>플러터의 위젯 문서는 굉장히 훌륭하다. <a href="https://flutter.io/widgets/" target="_blank" rel="noopener">목록</a>을 확인해 봐라.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">주의: 여러분이 React같은 컴포넌트 기반 프레임워크에 익숙하다면 내용을 읽지 않아도 된다. 위젯은 단지 컴포넌트 일 뿐이다.</span><br></pre></td></tr></table></figure>
+<h2 id="thinking-in-widgets">Thinking in Widgets</h2>
+<h2 id="widget-hierarchy">Widget Hierarchy</h2>
+<h2 id="design-for-re-usability">Design for Re-usability</h2>
 
                     
                         
