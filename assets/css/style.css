@@ -886,6 +886,8 @@ li.fancybox-thumbs-loading {
 }
 
 @charset "UTF-8";
+@import url("https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css");
+@import url("https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css");
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
