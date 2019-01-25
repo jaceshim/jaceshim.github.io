@@ -191,6 +191,111 @@ fjs.parentNode.insertBefore(js, fjs);
             <div class="postShorten-header">
                 <h1 class="postShorten-title">
                     
+                        <a class="link-unstyled" href="/2019/01/25/flutter-study-buildcontext-class/">
+                            flutter-study-buildcontext-class
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2019-01-25T14:05:52+09:00">
+	
+		    Jan 25, 2019
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/flutter/">flutter</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <blockquote>
+<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 원저작자의 동의하에 번역한것 입니다.<br>
+원 저작자 Eric Windmill에게 감사를 전합니다.<br>
+이해하는데 불필요한 문장은 과감하게 버렸습니다. 오 번역에 대해서 의견 주시면 적극 반영 하겠습니다.</p>
+</blockquote>
+<h1>BuildContext Class</h1>
+<p>모든 플러터 위젯은 <code>BuildContext</code> 인수(매개변수)가 포함된 <code>@override build()</code> 메소드를 가지고 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class CartItemWidget extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">  // ...</span><br></pre></td></tr></table></figure>
+<h2 id="why-buildcontext">why BuildContext</h2>
+<p><code>BuildContext</code>를 간단히 설명하자면 다음과 같다:</p>
+<ul>
+<li>위젯tree에서 위젯의 위치.</li>
+<li>중첩되어 감싸진 위젯의 위젯. <code>&lt;div &lt;div&gt; .html&gt;</code>와 같은…</li>
+<li>qt와 비슷한 부모 객체들(parent objects in qt and alike) (역자주: 여기서 말하는 qt가 뭔지 모르겠음.)</li>
+<li>플러터에선 최종 <code>build.call()</code> 까지 모든게 위젯임.</li>
+<li>마지막으로 위젯이 &quot;stuff&quot;를 리턴 할때 까지의 행(row) 차원(dimentions).</li>
+</ul>
+<p>이해 해야할 중요한 개념은:</p>
+<ol>
+<li>모든 위젯은 고유의 <code>build()</code> 메소드와 <code>context</code>를 가지고 있다.</li>
+<li><code>BuildContext</code>는 <code>build()</code> 메소드에 의해 리턴된 위젯의 부모다.</li>
+</ol>
+<p>즉, 위젯의 <code>build()</code> 메소드를 호출하는 위젯의<code>BuildContext</code>와 <code>build()</code>를 통해 리턴되는 위젯의 <code>BuildContext</code>는 동일하지 않다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class _MyHomePageState extends State&lt;MyHomePage&gt; &#123;</span><br><span class="line">  _MyHomePageState() &#123;</span><br><span class="line">    print(context.hashCode);</span><br><span class="line">    // prints 2011</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return new Scaffold(</span><br><span class="line">      appBar: new AppBar(</span><br><span class="line">        title: new Text(widget.title),</span><br><span class="line">      ),</span><br><span class="line">      body: new Container(),</span><br><span class="line">      floatingActionButton:</span><br><span class="line">          new FloatingActionButton(onPressed: () =&gt; print(context.hashCode)),</span><br><span class="line">          // prints 63</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(역자주 : 위 코드에서 두개의 print 메소드 실행시 전달된 <code>BuildContext</code>의 hashCode값이 다르다는것은 서로 다른 객체라는걸 알수 있다.)</p>
+<p><em>그래서 뭘 얘기 하려는 거요?</em><br>
+이거 큰거 하나 잡았다!(큰거 하나 알게되었다는 뜻인듯…) ;-)</p>
+<ul>
+<li>잘못된 <code>build()</code>를 참조하기 쉽다.</li>
+<li>그리고 그것은 <code>context</code>. (역자주: 잘못된 build()의 리턴값인 BuildContext를 참조하여 문제를 일으 킬수 있다정도로 이해됨 )</li>
+<li>이것은 특히 <code>of()</code> 메소드를 사용할때 예기치 않은 상황이 발생 할 수 있다.</li>
+</ul>
+<h2 id="the-of-method">The ‘of()’ Method</h2>
+<p>플러터에선 모든게 위젯이므로,(역자주: 이제 집겨다!!) 어떤 경우 다른 위젯을 참조하기 위해 위젯 트리를 위/아래로 훑기도 한다. 이것은 일부 기능에선 필수이다.</p>
+<p>특히 상속(<code>inherited</code>)된 위젯의 상태를 사용하려는 위젯은 상속한 위젯을 참조 할 수 있어야 한다. 이것은 일반적으로 <code>of()</code> 메소드의 형식으로 제공된다.</p>
+<p>예 :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@override</span><br><span class="line">Widget build(context) &#123;</span><br><span class="line">  return new Text(&apos;Hello, World&apos;,</span><br><span class="line">    style: new TextStyle(color: Theme.of(context).primaryColor),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>of()</code> 메소드는 내부적으로 <code>Theme</code> 유형의 다음 상위 위젯에 대한 트리를 찾고 기본 색상 속성을 가져온다. 프레임워크는 이 build context와 관련한 트리를 알고 있으므로 올바른 <code>Theme</code>개체를 찾을 수 있다.</p>
+<h2 id="the-gotcha">The Gotcha</h2>
+<p>플러터는 <code>scaffold</code>(비계)를 통해 우리에게 다음과 같은 문제를 해결 할 수 있는 좋은 방법을 제공한다.</p>
+<p><code>snackbar</code>와 같은 일부 위젯을 만들때, 가장 근접한 <code>Scafold</code> 컨텍스트를 얻어서 플러터가 <code>snackbar</code>를 그리는 방법을 알게 해야 한다. <code>Scafold</code>는 실제 우리가 <code>snackbar</code>를 디스플레이 할 수 있는 위젲이기 때문이다.</p>
+<p><code>아래 코드는 작동하지 않는다.</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return new Scaffold(</span><br><span class="line">        appBar: new AppBar(</span><br><span class="line">          title: new Text(widget.title),</span><br><span class="line">        ),</span><br><span class="line">        body: new Container(),</span><br><span class="line">        /// 이 컨텍스트는 Scaffold가 없음</span><br><span class="line">        /// 왜냐면 빌드로 전달된 컨텍스트는 현재 트리의 상위 위젯이고</span><br><span class="line">        /// 상위 위젯에에는 Scaffold가 없기 때문임.</span><br><span class="line">        ///</span><br><span class="line">        /// 이것은 에러를 던질것이다:</span><br><span class="line">        /// &apos;Scaffold.of() 호출시 전달된 context에는 Scaffold가 포함되어 있지 않기 때문에&apos;</span><br><span class="line">        floatingActionButton: new FloatingActionButton(onPressed: () &#123;</span><br><span class="line">          Scaffold.of(context).showSnackBar(</span><br><span class="line">                new SnackBar(</span><br><span class="line">                  content: new Text(&apos;SnackBar&apos;),</span><br><span class="line">                ),</span><br><span class="line">              );</span><br><span class="line">        &#125;));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="builder-methods">Builder Methods</h2>
+<p><code>Builder</code>는 <code>closure</code>를 사용하여 하위 위젯을 작성하는 위젯이다. laymans(역자주: In laymans - 평신도 라는 단어인데 어떻게 해석할지 모르겠음)에서는 build 메소드로 리턴되는 자식들에게 직접 컨텍스트를 전달하는데 사용 할 수 있다.</p>
+<p>위의 예제를 사용하면(역자주: 위에 오류난 코드를 사용):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return new Scaffold(</span><br><span class="line">      appBar: new AppBar(</span><br><span class="line">        title: new Text(widget.title),</span><br><span class="line">      ),</span><br><span class="line">      body: new Container(),</span><br><span class="line">      /// Builders를 사용하면 현재 build메소드에서 컨텍스트를 전달할 수 있다.</span><br><span class="line">      /// 이 build 메소드에서 리턴되는 하위 위젯에 직접 전달.</span><br><span class="line">      // &apos;builder&apos; 속성은 모든 위젯에서 build메소드로 정확하게 처리 할 수 있는 callback를 허용.</span><br><span class="line">      floatingActionButton: new Builder(builder: (context) &#123;</span><br><span class="line">        return new FloatingActionButton(onPressed: () &#123;</span><br><span class="line">          Scaffold.of(context).showSnackBar(</span><br><span class="line">                new SnackBar(</span><br><span class="line">                  backgroundColor: Colors.blue,</span><br><span class="line">                  content: new Text(&apos;SnackBar&apos;),</span><br><span class="line">                ),</span><br><span class="line">              );</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><em>tip</em>: 여러분은 단순히 build메소드를 작게 만들고 더 상위 위젯에서 Scaffold를 리턴하여 이 문제를 해결 할 수도 있다. 의심 스러운 경우 더 작은 리턴 method를 고수하라!</p>
+
+                    
+                        
+
+                    
+                    
+                        <p>
+                            <a href="/2019/01/25/flutter-study-buildcontext-class/#post-footer" class="postShorten-excerpt_link link">
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+        <div style="padding-bottom: 5px; border-bottom: 1px solid #eef2f8">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.0/kr/88x31.png"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+
+        <section id="comments">
+<div class="fb-comments" data-href="
+http://jaceshim.github.io/2019/01/25/flutter-study-buildcontext-class/" data-numposts="10"></div>
+</section>
+
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
                         <a class="link-unstyled" href="/2019/01/24/flutter-study-widgets/">
                             Flutter Widgets
                         </a>
