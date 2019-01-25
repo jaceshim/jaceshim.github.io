@@ -216,8 +216,7 @@ fjs.parentNode.insertBefore(js, fjs);
             
                 <div class="postShorten-content">
                     <blockquote>
-<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 번역한것 입니다.<br>
-원 저작자 Eric Windmill에게 감사를 전합니다.<br>
+<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 원저작자의 동의하에 번역한것 입니다. 원 저작자 Eric Windmill에게 감사를 전합니다.<br>
 이해하는데 불필요한 문장은 과감하게 버렸습니다. 오 번역에 대해서 의견 주시면 적극 반영 하겠습니다.</p>
 </blockquote>
 <h1>Flutter Widgets</h1>
@@ -267,8 +266,54 @@ fjs.parentNode.insertBefore(js, fjs);
 <p>플러터의 위젯 문서는 굉장히 훌륭하다. <a href="https://flutter.io/widgets/" target="_blank" rel="noopener">목록</a>을 확인해 봐라.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">주의: 여러분이 React같은 컴포넌트 기반 프레임워크에 익숙하다면 내용을 읽지 않아도 된다. 위젯은 단지 컴포넌트 일 뿐이다.</span><br></pre></td></tr></table></figure>
 <h2 id="thinking-in-widgets">Thinking in Widgets</h2>
+<p>플러터에서 모든것이 위젯이다(역자주: 몇번에 걸쳐 말하는거 보니 엄청 중요하겠죠? ㅋ)<br>
+위젯은 완벽한 앱을 만들기 위해 결합 할수 있는 아주 작은 UI덩어리 입니다. 플러터로 앱을 만드는 것은 레고 블록을 하나씩 조립해서 만드는것과 같다.<br>
+위젯은 앱을 만들기 위해 내부에 서로 중첩된다. 여러분의 앱의 root 또한 위젯이며 모든 위제들은 하위로 쭉 내려간다.</p>
+<p>플러터는 UI의 모든 측면(aspect)이 위젯으로 처리된다는 점에서 독특합니다.</p>
+<p>위젯은 무언가를 표시하거나, 디자인을 정의하거나, 레이아웃 처리를 하거나, 상호 작용을 처리 할 수 있다. 다시 한번 강조하지만 플러터의 모든것은 <code>Widget</code> 이다.</p>
+<ul>
+<li>텍스트를 표시하는 간단한 위젯 : <code>const Text('Hello World')</code></li>
+<li>사용자 상호작용을 처리하는 간단한 위젯 : <code>const Button(onTaps: ...callback...)</code></li>
+<li>배경색상을 추가 하는 간단한 위젯 : <code>const BoxDecoration(background: Colors.blue)</code></li>
+</ul>
+<p>기본적으로 여러분의 CSS, HTML 및 자바스크립트가 모두 위젯에서 처리된다고 상상해 보자. 마크업이 없고, CSS도 없다. 오직 위젯이다.</p>
 <h2 id="widget-hierarchy">Widget Hierarchy</h2>
+<p>아래 그림에서 윤곽선으로 보이는 모든 것이 위젯이다.<br>
+<img src="https://res.cloudinary.com/ericwindmill/image/upload/v1527539536/flutter_by_example/thinking_in_widgets.png" alt="outlined widget"></p>
+<p>이 그림은 <code>FlutterByExample</code>의 튜토리얼 앱 중 하나에서 가져온 것으로, 강아지(dog) 정보에 대한 세부 페이지 정보 이다.</p>
+<p>녹색 윤곽선은 page를 나타낸다. 그리고 페이지는  플러터의 위젯이다. 파란색 윤곽선은 논리적으로 그룹화된 UI 조각을 나타낸다. 나머지는 흰색으로 윤곽이 그려져 있고, 이는 단순히 내용과는 상관없는 아둔한 컴포넌트(dump component)일 뿐이고, 이것들은 단지 그들이 전달받는 것을 보여줄 뿐이다.</p>
+<p>다음은 이 페이지의 위젯 계층도 이다.</p>
+<ul>
+<li>PageWidget
+<ul>
+<li>DogProfileWidget</li>
+<li>CircleImage</li>
+<li>Text</li>
+<li>Text</li>
+<li>Text</li>
+<li>Container
+<ul>
+<li>Icon</li>
+<li>Text</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RateDogWidget</li>
+<li>Slider</li>
+<li>Text</li>
+<li>SubmitButton</li>
+</ul>
+<p><em>주의</em> 위 계층은 아주 정확하진 않다. 여기엔 <code>column</code> 및 <code>padding</code>과 같은 위젯도 있다.</p>
 <h2 id="design-for-re-usability">Design for Re-usability</h2>
+<p>플러터 위젯을 효과적으로 사용하는 가장 중요한 부분은 재사용 할 수 있도록 가장 저수준의 위젯을(lowest level) 디자인 하는 것이다.</p>
+<p>예를들어 위 위젯계층 구조에서 <code>CircleImage</code> 위젯은 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class CircleImage extends StatelessWidget &#123;</span><br><span class="line"> final String renderUrl;</span><br><span class="line"></span><br><span class="line"> CircleImage(this.renderUrl);</span><br><span class="line"></span><br><span class="line"> @override</span><br><span class="line"> Widget build(BuildContext context) &#123;</span><br><span class="line">   return new Container(</span><br><span class="line">    width: 100.0,</span><br><span class="line">    height: 100.0,</span><br><span class="line">    decoration: new BoxDecoration(</span><br><span class="line">      shape: BoxShape.circle,</span><br><span class="line">      image: new DecorationImage(</span><br><span class="line">        fit: BoxFit.cover,</span><br><span class="line">        image: new NetworkImage(renderUrl ?? &apos;&apos;),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>그런 다음 앱의 어느 곳에서나 이 위젯을 다시 사용할 수 있다. 이렇게요 ( <code>new CircleImage(https...)</code> ) 이 컴포넌트는 재사용성을 고려 하여 설계 되었으므로 여러분은 특정 크기의 둥근이미지를 원하는 앱의 어느 곳에서든 url만 전달하면 사용할 수 있다. 그러므로, 굳이 이 위젯을 반복해서 다시 만들 필요는 없다.</p>
+<p>추가적으로 이 원 이미지는(역자주: CircleImage 컴포넌트) 어떤 이미지를 나타내야 하는지 전혀 신경쓰지 않고 있다. 이것은 단지 컴포넌트의 스타일을 강제할 뿐이다.</p>
+<p>다음 그림은 테스트앱에서 위 컴포넌트가 사용되어진 카드(card)중 하나이다.<br>
+<img src="https://res.cloudinary.com/ericwindmill/image/upload/v1527539533/flutter_by_example/Screen_Shot_2018-05-27_at_12.13.40_PM.png" alt="dogs_of_cards"></p>
+<p><a href="https://github.com/ericwindmill/flutter_by_example_apps/tree/master/basic_flutter_app" target="_blank" rel="noopener">예제소스</a></p>
 
                     
                         
@@ -327,8 +372,7 @@ http://jaceshim.github.io/2019/01/24/flutter-study-widgets/" data-numposts="10">
             
                 <div class="postShorten-content">
                     <blockquote>
-<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 번역한것 입니다.<br>
-원 저작자 Eric Windmill에게 감사를 전합니다.<br>
+<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 원저작자의 동의하에 번역한것 입니다. 원 저작자 Eric Windmill에게 감사를 전합니다.<br>
 이해하는데 불필요한 문장은 과감하게 버렸습니다. 오 번역에 대해서 의견 주시면 적극 반영 하겠습니다.</p>
 </blockquote>
 <h1>Setup and Tools(설정과 도구들)</h1>
@@ -418,8 +462,7 @@ http://jaceshim.github.io/2019/01/24/flutter-setup-and-tools/" data-numposts="10
             
                 <div class="postShorten-content">
                     <blockquote>
-<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 번역한것 입니다.<br>
-원 저작자 Eric Windmill에게 감사를 전합니다.<br>
+<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 원저작자의 동의하에 번역한것 입니다. 원 저작자 Eric Windmill에게 감사를 전합니다.<br>
 이해하는데 불필요한 문장은 과감하게 버렸습니다. 오 번역에 대해서 의견 주시면 적극 반영 하겠습니다.</p>
 </blockquote>
 <h1>Flutter란?</h1>
