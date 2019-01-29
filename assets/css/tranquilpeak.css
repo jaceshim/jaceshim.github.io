@@ -2210,7 +2210,7 @@ a.fancybox {
     hypens: auto; }
     .postShorten .postShorten-excerpt img,
     .postShorten .postShorten-content img {
-      display: block;
+      display: inline-block;
       width: auto;
       max-width: 100%; }
   .postShorten .postShorten-excerpt {
