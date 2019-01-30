@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="JACE SHIM">
+    <title>flutter-study-gradients-background - JACE SHIM</title>
+    <meta name="author" content="Jace Shim">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg"},"articleBody":"Gradients Background\nGradient 배경을 추가하여 앱을 좀 더 예쁘게 만들 시간이다.\nGradient는 CSS와 마찬가지로 플러터에서도 쉽게 사용 할 수 있으며, 매우 핫(hot)하기 때문에 사용하기 좋다.\nGradient를 사용하려면 먼저 Container위젯이 필요하며, 그 안에 decoration 속성을 액세스 해야 한다.\nmain.dart파일에 _MyHomePageState클래스의 build메서드안 Container위젯의 decoratoin을 빌드 하는것으로 시작해 보자.\n1234567891011121314151617181920212223242526272829303132333435// main.dart@overrideWidget build(BuildContext context) &#123;  return Scaffold(    appBar: AppBar(      title: Text(widget.title),      backgroundColor: Colors.black87,    ),    body: Container(      // Box decoration 추가      decoration: BoxDecoration(        // Box decoration은 gradient를 가진다.        gradient: LinearGradient(          // linear gradient가 시작되고 끝나는 위치          begin: Alignment.topRight,          end: Alignment.bottomLeft,          // 각 색상에 대해 하나의 종료점을 추가. 종료점은 0에서 1까지 증가 해야함.          // Add one stop for each color. Stops should increase from 0 to 1          stops: [0.1, 0.5, 0.7, 0.9],          colors: [            // 색상처리는 플러터의 Colors클래스 덕분에 겁나 쉬움.            Colors.indigo[800],            Colors.indigo[700],            Colors.indigo[600],            Colors.indigo[400],          ],        ),      ),      child: Center(        child: DogList(initialDoggos),      ),    ),  );&#125;\ngradients가 적용된 모습:\n\n","dateCreated":"2019-01-30T14:39:01+09:00","dateModified":"2019-01-30T16:01:05+09:00","datePublished":"2019-01-30T14:39:01+09:00","description":"","headline":"flutter-study-gradients-background","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/"},"publisher":{"@type":"Organization","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/","keywords":"flutter, Gradients Background"}</script>
+    <meta name="description" content="Gradients Background Gradient 배경을 추가하여 앱을 좀 더 예쁘게 만들 시간이다. Gradient는 CSS와 마찬가지로 플러터에서도 쉽게 사용 할 수 있으며, 매우 핫(hot)하기 때문에 사용하기 좋다. Gradient를 사용하려면 먼저 Container위젯이 필요하며, 그 안에 decoration 속성을 액세스 해야 한다. main">
+<meta name="keywords" content="flutter,Gradients Background">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="flutter-study-gradients-background">
+<meta property="og:url" content="http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/index.html">
+<meta property="og:site_name" content="JACE SHIM">
+<meta property="og:description" content="Gradients Background Gradient 배경을 추가하여 앱을 좀 더 예쁘게 만들 시간이다. Gradient는 CSS와 마찬가지로 플러터에서도 쉽게 사용 할 수 있으며, 매우 핫(hot)하기 때문에 사용하기 좋다. Gradient를 사용하려면 먼저 Container위젯이 필요하며, 그 안에 decoration 속성을 액세스 해야 한다. main">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521385515/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_07.54.46.png">
+<meta property="og:updated_time" content="2019-01-30T07:01:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="flutter-study-gradients-background">
+<meta name="twitter:description" content="Gradients Background Gradient 배경을 추가하여 앱을 좀 더 예쁘게 만들 시간이다. Gradient는 CSS와 마찬가지로 플러터에서도 쉽게 사용 할 수 있으며, 매우 핫(hot)하기 때문에 사용하기 좋다. Gradient를 사용하려면 먼저 Container위젯이 필요하며, 그 안에 decoration 속성을 액세스 해야 한다. main">
+<meta name="twitter:image" content="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521385515/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_07.54.46.png">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://jaceshim.github.io/assets/images/profile.jpg"/>
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css">	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css">      
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-z2svfddshdg8rqvbyid44co3r0i37pnbeahhkfyhfvdbvar6nl9d0d5visho.min.css">
+    <!--STYLES END-->  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132758769-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132758769-1');
+    </script>
+
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">JACE SHIM</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=132871117350090&autoLogAppEvents=1&colorscheme=light&order_by=time";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">Jace Shim</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/jaceshim" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            flutter-study-gradients-background
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-01-30T14:39:01+09:00">
+	
+		    Jan 30, 2019
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/flutter/">flutter</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1>Gradients Background</h1>
+<p>Gradient 배경을 추가하여 앱을 좀 더 예쁘게 만들 시간이다.</p>
+<p>Gradient는 CSS와 마찬가지로 플러터에서도 쉽게 사용 할 수 있으며, 매우 핫(hot)하기 때문에 사용하기 좋다.</p>
+<p>Gradient를 사용하려면 먼저 <code>Container</code>위젯이 필요하며, 그 안에 <code>decoration</code> 속성을 액세스 해야 한다.</p>
+<p><code>main.dart</code>파일에 <code>_MyHomePageState</code>클래스의 <code>build</code>메서드안 <code>Container</code>위젯의 decoratoin을 빌드 하는것으로 시작해 보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// main.dart</span><br><span class="line"></span><br><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return Scaffold(</span><br><span class="line">    appBar: AppBar(</span><br><span class="line">      title: Text(widget.title),</span><br><span class="line">      backgroundColor: Colors.black87,</span><br><span class="line">    ),</span><br><span class="line">    body: Container(</span><br><span class="line">      // Box decoration 추가</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">        // Box decoration은 gradient를 가진다.</span><br><span class="line">        gradient: LinearGradient(</span><br><span class="line">          // linear gradient가 시작되고 끝나는 위치</span><br><span class="line">          begin: Alignment.topRight,</span><br><span class="line">          end: Alignment.bottomLeft,</span><br><span class="line">          // 각 색상에 대해 하나의 종료점을 추가. 종료점은 0에서 1까지 증가 해야함.</span><br><span class="line">          // Add one stop for each color. Stops should increase from 0 to 1</span><br><span class="line">          stops: [0.1, 0.5, 0.7, 0.9],</span><br><span class="line">          colors: [</span><br><span class="line">            // 색상처리는 플러터의 Colors클래스 덕분에 겁나 쉬움.</span><br><span class="line">            Colors.indigo[800],</span><br><span class="line">            Colors.indigo[700],</span><br><span class="line">            Colors.indigo[600],</span><br><span class="line">            Colors.indigo[400],</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      child: Center(</span><br><span class="line">        child: DogList(initialDoggos),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>gradients가 적용된 모습:<br>
+<img src="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521385515/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_07.54.46.png" alt="apply gradients"></p>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Gradients-Background/">Gradients Background</a> <a class="tag tag--primary tag--small t-link" href="/tags/flutter/">flutter</a>
+
+            </div>
+        
+        <div style="padding-bottom: 5px; border-bottom: 1px solid #eef2f8">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.0/kr/88x31.png"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/30/flutter-study-listview-and-builder-methods/" data-tooltip="ListView and Builder Methods" aria-label="NEXT: ListView and Builder Methods">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        <section id="comments">
+<div class="fb-comments" data-href="
+http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/" data-numposts="10"></div>
+</section>
+
+        
+            <!--  -->
+        
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Jace Shim. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/30/flutter-study-listview-and-builder-methods/" data-tooltip="ListView and Builder Methods" aria-label="NEXT: ListView and Builder Methods">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/30/flutter-study-gradients-background/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">Jace Shim</h4>
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-t7ijpwgqnsx79bzheqqud5n5dakbwan6eiq5msjhe0zsxvect7dvc4pvkcpc.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+
+    </body>
+</html>
