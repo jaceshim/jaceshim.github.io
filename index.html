@@ -191,6 +191,83 @@ fjs.parentNode.insertBefore(js, fjs);
             <div class="postShorten-header">
                 <h1 class="postShorten-title">
                     
+                        <a class="link-unstyled" href="/2019/01/30/flutter-study-routing1-pages-on-the-fly/">
+                            Routing 1 - Pages on the Fly
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2019-01-30T16:15:18+09:00">
+	
+		    Jan 30, 2019
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/flutter/">flutter</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1>Routing 1: Pages on the Fly (페이지 이동)</h1>
+<p>플러터 앱에 페이지를 추가하는 방법에는 몇가지 있다.</p>
+<p>여러분이 알고 있는 모든 페이지에 대해, 여러분은 선언된 경로를 사용 할 수 있다.</p>
+<p>하지만 이 앱은 정확히 강아지 한마리당 하나씩이 페이지를 만들것이고 이는 경로 작성자에게 좋은 예(case) 이다.</p>
+<h2 id="1-create-a-dog-detail-page-강아지-상세페이지-만들기">1. Create a Dog Detail Page: (강아지 상세페이지 만들기)</h2>
+<p><code>dog_detail_page.dart</code>라는 신규 파일을 생성하자.</p>
+<p>이것은 StatefulWidget이 될것이고 앱 사용자는 나중에 강아지를 평가 하게 할거지만 현재로선 관리할 상태(state)가 없다.</p>
+<p>아래 그림은 당분간 여러분이 만들려고 하는 것이다.<br>
+<img src="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521388587/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_08.51.49.png" alt="dog detail page"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">// dog_detail_page.dart</span><br><span class="line"></span><br><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line"></span><br><span class="line">import &apos;dog_model.dart&apos;;</span><br><span class="line"></span><br><span class="line">class DogDetailPage extends StatefulWidget &#123;</span><br><span class="line">  final Dog dog;</span><br><span class="line"></span><br><span class="line">  DogDetailPage(this.dog);</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  _DogDetailPageState createState() =&gt; _DogDetailPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class _DogDetailPageState extends State&lt;DogDetailPage&gt; &#123;</span><br><span class="line">  // 스타일에 대한 임의의 사이즈 선택</span><br><span class="line">  final double dogAvatarSize = 150.0;</span><br><span class="line"></span><br><span class="line">  Widget get dogImage &#123;</span><br><span class="line">    // Container는 자식들의 사이즈를 정의</span><br><span class="line">    return Container(</span><br><span class="line">      height: dogAvatarSize,</span><br><span class="line">      width: dogAvatarSize,</span><br><span class="line">      // Box Decoration을 사용하여 이미지를 원형으로 만들고, 스타일을 위해 임의의 그림자(shadow)를 추가한다.</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">        shape: BoxShape.circle,</span><br><span class="line">        // CSS에서 처럼 여러분은 종종 오른쪽 모양을 위해 다수의 BoxShadows를 추가하길 원한다.</span><br><span class="line">        // 그래서 boxShadow 속성은 BoxShadows의 목록을 가진다.</span><br><span class="line">        boxShadow: [</span><br><span class="line">          const BoxShadow(</span><br><span class="line">              // CSS 처럼:</span><br><span class="line">              // 이것은 동일한 4개의 속성을 가진다.</span><br><span class="line">              offset: const Offset(1.0, 2.0),</span><br><span class="line">              blurRadius: 2.0,</span><br><span class="line">              spreadRadius: -1.0,</span><br><span class="line">              color: const Color(0x33000000)),</span><br><span class="line">          const BoxShadow(</span><br><span class="line">              offset: const Offset(2.0, 1.0),</span><br><span class="line">              blurRadius: 3.0,</span><br><span class="line">              spreadRadius: 0.0,</span><br><span class="line">              color: const Color(0x24000000)),</span><br><span class="line">          const BoxShadow(</span><br><span class="line">              offset: const Offset(3.0, 1.0),</span><br><span class="line">              blurRadius: 4.0,</span><br><span class="line">              spreadRadius: 2.0,</span><br><span class="line">              color: const Color(0x1F000000)),</span><br><span class="line">        ],</span><br><span class="line">        // 컨테이너 배경에 이미지를 추가.</span><br><span class="line">        image: DecorationImage(</span><br><span class="line">          fit: BoxFit.cover,</span><br><span class="line">          image: NetworkImage(widget.dog.imageUrl),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // ★ 10/10으로 표시되는 등급 부분</span><br><span class="line">  Widget get rating &#123;</span><br><span class="line">    // 위젯을 수평으로 배치하기 위해 row를 사용</span><br><span class="line">    return Row(</span><br><span class="line">      // 위젯을 행(row)의 가로축 중심에 배치</span><br><span class="line">      mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">      children: &lt;Widget&gt;[</span><br><span class="line">        Icon(</span><br><span class="line">          Icons.star,</span><br><span class="line">          size: 40.0,</span><br><span class="line">        ),</span><br><span class="line">        Text(&apos; $&#123;widget.dog.rating&#125; / 10&apos;,</span><br><span class="line">            style: Theme.of(context).textTheme.display2),</span><br><span class="line">      ],</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 이미지, 평가점수, 강아지 정보를 표시하는 위젯</span><br><span class="line">  Widget get dogProfile &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      padding: EdgeInsets.symmetric(vertical: 32.0),</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">        // 이것은 앱 전체에 공유 할 수 있는 커스텀 LinearGradient 위젯을 생성 할 수 있는 좋은 기회다</span><br><span class="line">        // 하지만 난 이걸 당신에게 맡길것이다. (재사용 가능한 컴포넌트 관점임)</span><br><span class="line">        gradient: LinearGradient(</span><br><span class="line">          begin: Alignment.topRight,</span><br><span class="line">          end: Alignment.bottomLeft,</span><br><span class="line">          stops: [0.1, 0.5, 0.7, 0.9],</span><br><span class="line">          colors: [</span><br><span class="line">            Colors.indigo[800],</span><br><span class="line">            Colors.indigo[700],</span><br><span class="line">            Colors.indigo[600],</span><br><span class="line">            Colors.indigo[400],</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      // 강아지 프로필 정보</span><br><span class="line">      child: Column(</span><br><span class="line">        crossAxisAlignment: CrossAxisAlignment.center,</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          dogImage,</span><br><span class="line">          Text(</span><br><span class="line">            &apos;$&#123;widget.dog.name&#125;  🎾&apos;,</span><br><span class="line">            style: TextStyle(fontSize: 32.0),</span><br><span class="line">          ),</span><br><span class="line">          Text(</span><br><span class="line">            widget.dog.location,</span><br><span class="line">            style: TextStyle(fontSize: 20.0),</span><br><span class="line">          ),</span><br><span class="line">          Padding(</span><br><span class="line">            padding:</span><br><span class="line">                const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),</span><br><span class="line">            child: Text(widget.dog.description),</span><br><span class="line">          ),</span><br><span class="line">          rating</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 마지막으로 빌드 메서드:</span><br><span class="line">  // 하나의 거대한 빌드 메서드를 작성하는것 보다 이 파일의 구현처럼 위젯을 분해해서 UI를 만드는것이 훨씬 쉽다.</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    // This is a new page, so you need a new Scaffold!</span><br><span class="line">    return Scaffold(</span><br><span class="line">      backgroundColor: Colors.black87,</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        backgroundColor: Colors.black87,</span><br><span class="line">        title: Text(&apos;Meet $&#123;widget.dog.name&#125;&apos;),</span><br><span class="line">      ),</span><br><span class="line">      body: dogProfile,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-add-the-routing-mechanism-라우팅-메커니즘-추가">2. Add the Routing mechanism: (라우팅 메커니즘 추가)</h2>
+<p>여러분은 <code>DogDetailPage</code>를 추가했지만 해당 페이지로 이동할 수 없다. 자~ 라우팅을 추가해 보자.</p>
+<p>모든 강아지 목록을 나열하는 메인 페이지상에서 모든 card는 tap하면 강아지의 상세 페이지로 이동하는 버튼이 될 것이다.</p>
+<p><code>dog_card.dart</code>안에  <code>DogDetailPage</code>을 import하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// dog_card.dart</span><br><span class="line"></span><br><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line"></span><br><span class="line">import &apos;dog_detail_page.dart&apos;;</span><br><span class="line">import &apos;dog_model.dart&apos;;</span><br></pre></td></tr></table></figure>
+<p><code>_DogCardState</code>클래스에 모든것을 버튼(역자주: 실제 버튼이 아니라 버튼처럼 작동하는) 하나로 감싸야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// dog_card.dart</span><br><span class="line"></span><br><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  // InkWell은 자식들을 태핑(tappable) 할 수 있게 해주는 특별한 Material위젯으로 , 탭되면 Material design 잉크(ink) 리플(ripple)을 추가함.</span><br><span class="line">  return InkWell(</span><br><span class="line">    // onTap은 탭 되면 트리거되는 callback이다.</span><br><span class="line">    onTap: showDogDetailPage,</span><br><span class="line">    child: Padding(</span><br><span class="line">      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),</span><br><span class="line">      child: Container(</span><br><span class="line">        height: 115.0,</span><br><span class="line">        child: Stack(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Positioned(</span><br><span class="line">              left: 50.0,</span><br><span class="line">              child: dogCard,</span><br><span class="line">            ),</span><br><span class="line">            Positioned(top: 7.5, child: dogImage),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 새로운 페이지를 만드는 builder메서드</span><br><span class="line">showDogDetailPage() &#123;</span><br><span class="line">  // Navigator.of(context) 는 현재 앱의 navigator에 접근한다.</span><br><span class="line">  // Navigators는 새로운 경로를 stack안에 &apos;push&apos;할 뿐만 아니라 pop 경로를 스택에서 없어지게 한다.</span><br><span class="line">  //</span><br><span class="line">  // This is the easiest way to build a new page on the fly</span><br><span class="line">  // and pass that page some state from the current page.</span><br><span class="line">  // 이것은 새로운 페이지를 만들고 해당 페이지를 현재 페이지의 일부 상태를 전달하는 가장 쉬운 방법이다.</span><br><span class="line">  Navigator.of(context).push(</span><br><span class="line">    MaterialPageRoute(</span><br><span class="line">      // builder methods always take context!</span><br><span class="line">      builder: (context) &#123;</span><br><span class="line">        return DogDetailPage(dog);</span><br><span class="line">      &#125;,</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이제 앱은 각 강아지 마다 페이지가 존재한다.<br>
+강아지 상세 페이지에 ‘뒤로가기’ 버튼이 있다는 것을 눈치 챘을 거다, 하지만 그에 대한 코드는 없다.<br>
+플러터는 자동으로 <code>AppBar</code>에 경로를 되돌리는 버튼을 추가한다. 필요한 경우 <code>AppBar</code> 위젯에서 재정의 할 수 있다.</p>
+
+                    
+                        
+
+                    
+                    
+                        <p>
+                            <a href="/2019/01/30/flutter-study-routing1-pages-on-the-fly/#post-footer" class="postShorten-excerpt_link link">
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+        <div style="padding-bottom: 5px; border-bottom: 1px solid #eef2f8">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.0/kr/88x31.png"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+
+        <section id="comments">
+<div class="fb-comments" data-href="
+http://jaceshim.github.io/2019/01/30/flutter-study-routing1-pages-on-the-fly/" data-numposts="10"></div>
+</section>
+
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
                         <a class="link-unstyled" href="/2019/01/30/flutter-study-gradients-background/">
                             Gradients Background
                         </a>
@@ -1062,97 +1139,6 @@ http://jaceshim.github.io/2019/01/25/flutter-study-buildcontext-class/" data-num
         <section id="comments">
 <div class="fb-comments" data-href="
 http://jaceshim.github.io/2019/01/24/flutter-study-widgets/" data-numposts="10"></div>
-</section>
-
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/24/flutter-setup-and-tools/">
-                            Flutter 설정 및 도구
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-24T16:43:44+09:00">
-	
-		    Jan 24, 2019
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/flutter/">flutter</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <blockquote>
-<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 원저작자의 동의하에 번역한것 입니다.<br>
-원 저작자 Eric Windmill에게 감사를 전합니다.<br>
-이해하는데 불필요한 문장은 과감하게 버렸습니다. 오 번역에 대해서 의견 주시면 적극 반영 하겠습니다.</p>
-</blockquote>
-<h1>Setup and Tools(설정과 도구들)</h1>
-<p>플러터를 사용하기 위한 첫번째 단계는 <code>Dart</code>설치를 포함하는 플러터 SDK를 설치하는 것이다. 이 <a href="https://flutter.io/docs/get-started/install" target="_blank" rel="noopener">가이드</a> 를 따라 시작하시오.</p>
-<h2 id="choose-an-editor-with-dart-plugins-다트-플러그인을-포함한-에디터-선택">Choose an Editor with Dart Plugins (다트 플러그인을 포함한 에디터 선택)</h2>
-<p>여러분이 다트 코드를 작성하려고 할때 어떤 text에디터든 사용할 수 있지만 플러터가 지원되는 IDE를 선택하면 훨씬 더 생산적인 경험을 할 수 있다. 내가 제안할 두 가지는 다음과 같다.</p>
-<ol>
-<li>IntelliJ Idea<br>
-나는 <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">JetBranis의 IntelliJ IDEA</a>를 적극 추천한다. community edition은 무료임.<br>
-이 IDE는 코드완성, 스니펫(snippets), 오류강조, 린팅(linting) 등 어떤 언어든 원하는 모든 멋진 기능을 제공한다. 또한 죽여주는 디버깅 기능을 얻을게 될 것이고, 디버그 도구에는 브라우저 dev-tools 스타일 검사기 등이 있다.<br>
-(역자주: 저의 경우 android studio에 flutter, dart플러그인 설치하는게 더 좋은것 같음.)</li>
-</ol>
-<p>IntelliJ를 사용하려면 IntelliJ 내에 Dart 및 Flutter 플러그인을 설치해야한다.<br>
-<img src="https://res.cloudinary.com/ericwindmill/image/upload/v1518914480/flutter_by_example/inspector_screenshot.png" alt="IntelliJ IDEA"><br>
-위젯 트리를 보여주는 플러터 검사기 - 브라우저의 dev tools의 HTML보기와 유사하다.</p>
-<ol start="2">
-<li>VS Code<br>
-다트 커뮤니티는 플러터 기능을 지원하는 VS코드용 다트 플러그인을 만들었다. 그것은 강력하지는 않지만 좋은 대안이 될 수 있다.<br>
-(역자주: 기존에 IDEA을 사용해오셨다면 고생하지 마시고 그냥 Android Studio에 플러터, 다트 플러그인 설치해서 사용하세요.)</li>
-</ol>
-<ul>
-<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code" target="_blank" rel="noopener">VSCode용 다트 플러그인</a></li>
-</ul>
-<h2 id="pub-and-libraries">Pub and Libraries</h2>
-<p><code>pub</code>는 다트 패키지 관리 시스템이다. 다트 및 플러터에서 사용 가능한 모든 패키지를 검색하고 정보를 얻을 수 있는 웹사이트가 있다.<br>
-<a href="https://pub.dartlang.org/" target="_blank" rel="noopener">다트 Pub 패키지</a></p>
-<h2 id="gitter">Gitter</h2>
-<p>문제가 발생하면 <a href="https://gitter.im/flutter/flutter" target="_blank" rel="noopener">플러터 Gitter채널</a>에서 실시간으로 도움을 요청 할 수 있다. 그곳에서 구글의 플러터 팀 구성원과 플러터를 지지하는 팬 커뮤니티를 찾을 수도 있을 것이다.</p>
-<h2 id="flutter-docs">Flutter Docs</h2>
-<p>마지막으로 나는 플러터의 문서가 내가 만난 최고 중 하나라고 진심으로 생각한다. <a href="https://flutter.io/widgets/" target="_blank" rel="noopener">Flutter Widget Docs</a></p>
-
-                    
-                        
-
-                    
-                    
-                        <p>
-                            <a href="/2019/01/24/flutter-setup-and-tools/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-        <div style="padding-bottom: 5px; border-bottom: 1px solid #eef2f8">
-    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.0/kr/88x31.png"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.
-</div>
-
-        <section id="comments">
-<div class="fb-comments" data-href="
-http://jaceshim.github.io/2019/01/24/flutter-setup-and-tools/" data-numposts="10"></div>
 </section>
 
     </article>
