@@ -191,6 +191,80 @@ fjs.parentNode.insertBefore(js, fjs);
             <div class="postShorten-header">
                 <h1 class="postShorten-title">
                     
+                        <a class="link-unstyled" href="/2019/01/31/flutter-study-routing2-add-new-dog-page/">
+                            Routing 2 Add New Dog Page
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2019-01-31T11:04:08+09:00">
+	
+		    Jan 31, 2019
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/flutter/">flutter</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1>Routing 2: Add New Dog Page (강아지 등록 페이지 추가)</h1>
+<p>우리가 만들 페이지는 강아지를 추가하는 페이지이다.<br>
+다음 섹션에서 사용자 입력을 처리하는 방법을 보여주겠지만, 지금 해당 경로를 추가하는 것이 좋다.</p>
+<h2 id="1-add-newdogpage">1. Add NewDogPage</h2>
+<p><code>lib</code>폴더에 <code>new_dog_form.dart</code>라는 파일을 신규로 생성한다.</p>
+<p>이 페이지의 UI는 간단하다:<br>
+<img src="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521390457/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_09.27.27.png" alt="newdogpage"></p>
+<p>다음은 기능이 없는 코드이다. (다음 섹션에서 사용자 입력 기능을 추가할 예정이다)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">// new_dog_form.dart</span><br><span class="line"></span><br><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line"></span><br><span class="line">class AddDogFormPage extends StatefulWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  _AddDogFormPageState createState() =&gt; _AddDogFormPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class _AddDogFormPageState extends State&lt;AddDogFormPage&gt; &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    // 새로운 페이지는 scaffolding이 필요하다.</span><br><span class="line">    return Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(&apos;Add a new Dog&apos;),</span><br><span class="line">        backgroundColor: Colors.black87,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        color: Colors.black54,</span><br><span class="line">        child: Padding(</span><br><span class="line">          padding: const EdgeInsets.symmetric(</span><br><span class="line">            vertical: 8.0,</span><br><span class="line">            horizontal: 32.0,</span><br><span class="line">          ),</span><br><span class="line">          child: Column(</span><br><span class="line">            children: [</span><br><span class="line">              Padding(</span><br><span class="line">                padding: const EdgeInsets.only(bottom: 8.0),</span><br><span class="line">                // Text Field는 플러터의 기본 입력 위젯이다.</span><br><span class="line">                // 이것은 아래에서 볼 수 있는 labelText와 같은 훌륭한UI 및 기능이 내장되어 있다.</span><br><span class="line">                child: TextField(</span><br><span class="line">                    decoration: InputDecoration(</span><br><span class="line">                  labelText: &apos;Name the Pup&apos;,</span><br><span class="line">                )),</span><br><span class="line">              ),</span><br><span class="line">              Padding(</span><br><span class="line">                padding: const EdgeInsets.only(bottom: 8.0),</span><br><span class="line">                child: TextField(</span><br><span class="line">                    decoration: InputDecoration(</span><br><span class="line">                  labelText: &quot;Pup&apos;s location&quot;,</span><br><span class="line">                )),</span><br><span class="line">              ),</span><br><span class="line">              Padding(</span><br><span class="line">                padding: const EdgeInsets.only(bottom: 8.0),</span><br><span class="line">                child: TextField(</span><br><span class="line">                  decoration: InputDecoration(</span><br><span class="line">                    labelText: &apos;All about the pup&apos;,</span><br><span class="line">                  ),</span><br><span class="line">                ),</span><br><span class="line">              ),</span><br><span class="line">              // A Strange situation.</span><br><span class="line">              // 이상한 현상.</span><br><span class="line">              // 여러분이 다음 섹션에서 추가해야할 앱의 일부는 context를 알아야 하며,</span><br><span class="line">              // context를 전달하는 가장 쉬운 방법은 builder 메서드를 사용하는 것이다.</span><br><span class="line">              // 그래서 나는 이 button을 Builder에 일종의 &apos;hack&apos;으로 감쌌다.</span><br><span class="line">              Padding(</span><br><span class="line">                padding: const EdgeInsets.all(16.0),</span><br><span class="line">                child: Builder(</span><br><span class="line">                  builder: (context) &#123;</span><br><span class="line">                    // 기본 Material 디자인 액션 버튼</span><br><span class="line">                    return RaisedButton(</span><br><span class="line">                      // 만약 onPressed가 null이면 button 은 비활성화(disabled)된다.</span><br><span class="line">                      // 이건 필자가 만든 임시 callback 이다.</span><br><span class="line">                      onPressed: () =&gt; print(&apos;PRESSED&apos;),</span><br><span class="line">                      color: Colors.indigoAccent,</span><br><span class="line">                      child: Text(&apos;Submit Pup&apos;),</span><br><span class="line">                    );</span><br><span class="line">                  &#125;,</span><br><span class="line">                ),</span><br><span class="line">              ),</span><br><span class="line">            ],</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-add-the-routing">2. Add the Routing</h2>
+<p>마지막 섹션과 마찬가지로 등록 페이지는 아직 액세스 할 수 없다. 버튼과 라우팅 정보를 <code>_MyHomePageState</code> 클래스에 추가하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// main.dart</span><br><span class="line"></span><br><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return Scaffold(</span><br><span class="line">    appBar: AppBar(</span><br><span class="line">      title: Text(widget.title),</span><br><span class="line">      backgroundColor: Colors.black87,</span><br><span class="line">      // Material appBar의 오른쪽 상단에 새로운 버튼을 추가하는 방법이다.</span><br><span class="line">      // 여러분이 원하는 만큼 추가 할 수 있다.</span><br><span class="line">      actions: [</span><br><span class="line">         IconButton(</span><br><span class="line">          icon: Icon(Icons.add),</span><br><span class="line">          onPressed: _showNewDogForm,</span><br><span class="line">        ),</span><br><span class="line">      ],</span><br><span class="line">    ),</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<p>그러면 앱의 오른쪽 상단 모서리에  플러스 기호 버튼이 추가되고 새로운 경로(route) 를 빌드 하는 메서드를 추가 할 수 있다.</p>
+<p><code>main.dart</code>에 <code>new_dog_form.dart</code> import.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main.dart</span><br><span class="line"></span><br><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line"></span><br><span class="line">import &apos;dog_list.dart&apos;;</span><br><span class="line">import &apos;dog_model.dart&apos;;</span><br><span class="line">import &apos;new_dog_form.dart&apos;;</span><br></pre></td></tr></table></figure>
+<p>아래 코드를 <code>_MyHomePageState</code> 클래스 아무곳에나 추가하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 새로운 경로를 pushing하고 그 경로가 여러분에게 되돌아 오기를 기대할때마다 여러분은 비동기 함수(async funtion)를 사용해야 한다.</span><br><span class="line">// 이 경우 함수는 사용자가 작성하고 제출 할 수 있는 양식 페이지를 만든다.</span><br><span class="line">// 제출시(submission) 해당 페이지의 정보가 이 함수로 다시 전달 된다.</span><br><span class="line">Future _showNewDogForm() async &#123;</span><br><span class="line">  // push a new route like you did in the last section</span><br><span class="line">  Dog newDog = await Navigator.of(context).push(</span><br><span class="line">    MaterialPageRoute(</span><br><span class="line">      builder: (BuildContext context) &#123;</span><br><span class="line">        return AddDogFormPage();</span><br><span class="line">      &#125;,</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  // 사용자가 양식을 입력했는지를 확인하기 위한 null 검사. </span><br><span class="line">  if (newDog != null) &#123;</span><br><span class="line">    // 새로운 강아지 정보를 강아지 목록에 추가.</span><br><span class="line">    initialDoggos.add(newDog);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                    
+                        
+
+                    
+                    
+                        <p>
+                            <a href="/2019/01/31/flutter-study-routing2-add-new-dog-page/#post-footer" class="postShorten-excerpt_link link">
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+        <div style="padding-bottom: 5px; border-bottom: 1px solid #eef2f8">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.0/kr/88x31.png"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+
+        <section id="comments">
+<div class="fb-comments" data-href="
+http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/" data-numposts="10"></div>
+</section>
+
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
                         <a class="link-unstyled" href="/2019/01/30/flutter-study-routing1-pages-on-the-fly/">
                             Routing 1 - Pages on the Fly
                         </a>
@@ -295,7 +369,7 @@ http://jaceshim.github.io/2019/01/30/flutter-study-routing1-pages-on-the-fly/" d
 <p>Gradient 배경을 추가하여 앱을 좀 더 예쁘게 만들 시간이다.</p>
 <p>Gradient는 CSS와 마찬가지로 플러터에서도 쉽게 사용 할 수 있으며, 매우 핫(hot)하기 때문에 사용하기 좋다.</p>
 <p>Gradient를 사용하려면 먼저 <code>Container</code>위젯이 필요하며, 그 안에 <code>decoration</code> 속성을 액세스 해야 한다.</p>
-<p><code>main.dart</code>파일에 <code>_MyHomePageState</code>클래스의 <code>build</code>메서드안 <code>Container</code>위젯의 decoratoin을 빌드 하는것으로 시작해 보자.</p>
+<p><code>main.dart</code>파일에 <code>_MyHomePageState</code>클래스의 <code>build</code>메서드안 <code>Container</code>위젯의 decoration을 빌드 하는것으로 시작해 보자.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// main.dart</span><br><span class="line"></span><br><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return Scaffold(</span><br><span class="line">    appBar: AppBar(</span><br><span class="line">      title: Text(widget.title),</span><br><span class="line">      backgroundColor: Colors.black87,</span><br><span class="line">    ),</span><br><span class="line">    body: Container(</span><br><span class="line">      // Box decoration 추가</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">        // Box decoration은 gradient를 가진다.</span><br><span class="line">        gradient: LinearGradient(</span><br><span class="line">          // linear gradient가 시작되고 끝나는 위치</span><br><span class="line">          begin: Alignment.topRight,</span><br><span class="line">          end: Alignment.bottomLeft,</span><br><span class="line">          // 각 색상에 대해 하나의 종료점을 추가. 종료점은 0에서 1까지 증가 해야함.</span><br><span class="line">          // Add one stop for each color. Stops should increase from 0 to 1</span><br><span class="line">          stops: [0.1, 0.5, 0.7, 0.9],</span><br><span class="line">          colors: [</span><br><span class="line">            // 색상처리는 플러터의 Colors클래스 덕분에 겁나 쉬움.</span><br><span class="line">            Colors.indigo[800],</span><br><span class="line">            Colors.indigo[700],</span><br><span class="line">            Colors.indigo[600],</span><br><span class="line">            Colors.indigo[400],</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      child: Center(</span><br><span class="line">        child: DogList(initialDoggos),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>gradients가 적용된 모습:<br>
 <img src="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521385515/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_07.54.46.png" alt="apply gradients"></p>
@@ -982,163 +1056,6 @@ http://jaceshim.github.io/2019/01/28/flutter-study-dissecting-the-counter-app/" 
         <section id="comments">
 <div class="fb-comments" data-href="
 http://jaceshim.github.io/2019/01/25/flutter-study-buildcontext-class/" data-numposts="10"></div>
-</section>
-
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/2019/01/24/flutter-study-widgets/">
-                            Flutter Widgets
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-01-24T17:37:16+09:00">
-	
-		    Jan 24, 2019
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/flutter/">flutter</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <blockquote>
-<p>본 문서는 <a href="https://flutterbyexample.com" target="_blank" rel="noopener">Fluter Example</a>의 내용을 원저작자의 동의하에 번역한것 입니다.<br>
-원 저작자 Eric Windmill에게 감사를 전합니다.<br>
-이해하는데 불필요한 문장은 과감하게 버렸습니다. 오 번역에 대해서 의견 주시면 적극 반영 하겠습니다.</p>
-</blockquote>
-<h1>Flutter Widgets</h1>
-<p>어떤걸 다루나?</p>
-<ul>
-<li><a href="https://flutterbyexample.com/flutter-widgets#whats-a-widget" target="_blank" rel="noopener">위젯이 무엇인지?</a></li>
-<li><a href="https://flutterbyexample.com/flutter-widgets#stateless-and-statefulwidgets" target="_blank" rel="noopener">Stateful, Stateless 위젯</a></li>
-<li><a href="https://flutterbyexample.com/flutter-widgets#material-and-cupertino-widgets" target="_blank" rel="noopener">Materal, Cupertino</a></li>
-<li><a href="https://flutterbyexample.com/flutter-widgets#most-common-widgets" target="_blank" rel="noopener">가장 일반적인 Widgets(Most Common Widgets)</a></li>
-<li><a href="https://flutterbyexample.com/flutter-widgets#thinking-in-widgets" target="_blank" rel="noopener">위젯에서 생각하기(Thinking in Widgets)</a></li>
-</ul>
-<h2 id="what-s-a-widget">What’s a Widget</h2>
-<p>플러터에선 모든게 위젯이다.</p>
-<p>만약 여러분이 이전에 React나 Vue로 작업을 해봤다면 이것은 매우 쉬울 것이다. 플러터에서 모든것들이 <code>Widget</code> 이다. 재사용 가능한 작은 컴포넌트로 작업하는 것은 JS프레임워크와 매우 유사하다. 그리고 위젯은 플러터 클래스를 확장하는 다트 클래스에 지나지 않는다.</p>
-<p>모든 플러터 위젯은 다음과 같다:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class ImageWidget extends StatelessWidget &#123;</span><br><span class="line">	// class stuff</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>위젯 클래스들은 오직 하나의 요구사항만 있다: 그것은 반드시 다른 위젯을 리턴하는 <code>build</code> 메소드를 가지고 있어야 한다는 것이다. 이 규칙의 유일한 예외는 기본타입(primitive types) (대개 Strings 또는 numbers)을 반환하는 <code>Text</code>와 같은 낮은 수준의 위젯이다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class BigText extends StatelessWidget &#123;</span><br><span class="line">	Widget build(context) &#123;</span><br><span class="line">		return new Text(&apos;text&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>그외 위젯은 일반적인 다트 클래스 일뿐이다. 여러분은 위젯에 메소드와 속성 등을 추가 할 수있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class BigText extends StatelessWidget &#123;</span><br><span class="line">	// a property on this class</span><br><span class="line">	final String text;</span><br><span class="line"></span><br><span class="line">	// a constructor for this class</span><br><span class="line">	BigText(this.text);</span><br><span class="line"></span><br><span class="line">	Widget build(context) &#123;</span><br><span class="line">		// Pass the text down to another widget</span><br><span class="line">		return new Text(</span><br><span class="line">			text,</span><br><span class="line">			// Even changing font-style is done through a Dart class.</span><br><span class="line">			textStyle: new TextStyle(fontSize: 20.0),</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>그런 다음 앱의 다른 곳에서 위젯을 다음과 같이 사용하면 된다:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// ...</span><br><span class="line">// This is how we&apos;d use the BigText within another widget.</span><br><span class="line">child: new BigText(&apos;This string would render and be big&apos;),</span><br><span class="line">// ...</span><br></pre></td></tr></table></figure>
-<h2 id="stateless-and-statefulwidgets">Stateless and StatefulWidgets</h2>
-<p>플러터 위젯은 플러터 라이브러리에서 몇 가지 클래스를 확장 해야 한다. 여러분이 사용할 둘은 거의 항상 <code>StatelessWidget</code>와 <code>StatefulWidget</code>이다.</p>
-<p>둘간 차이점은 위젯 내에 상태(<code>state</code>)개념이 있고 그 중 일부가 변경되면 플러터에 다시 렌더링(re-rendering)을 지시하는 메소드가 내장 되어 있다는 것이다. 이것은 플러터의 핵심 개념이다.<br>
-<code>Stateful</code> 위젯은 조금 달라 보인다. 사실 두 가지 클래스인 <code>state</code>객체와 위젯 이다. (역자주: <code>Stateless</code>위젯은 <code>StatelessWidget</code> 클래스만 상속 받으면 되지만 <code>Stateful</code>위젯은 <code>StatefulWidget</code>를 상속한 위젯 클래스와 위젯 생성시 내부적으로 사용되는 state객체를 생성하기 위한 <code>State</code>클래스를 상속받은 클래스 이렇게 두개가 필요함을 말한다.)</p>
-<p>다음과 같이 작성하면 된다:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Counter extends StatefulWidget &#123;</span><br><span class="line">  Counter(&#123;Key key, this.title&#125;) : super(key: key);</span><br><span class="line"></span><br><span class="line">   // Stateful Widgets don&apos;t have build methods.</span><br><span class="line">   // They have createState() methods.</span><br><span class="line">   // Create State returns a class that extends Flutters State class.</span><br><span class="line">  @override</span><br><span class="line">  _MyHomePageState createState() =&gt; new _MyHomePageState();</span><br><span class="line"></span><br><span class="line">  // Stateful Widgets are rarely more complicated than this.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class _MyHomePageState extends State&lt;MyHomePage&gt; &#123;</span><br><span class="line">	int counter = 0;</span><br><span class="line"></span><br><span class="line">	void increaseCount() &#123;</span><br><span class="line">		// setState is a special method that tells Flutter to repaint</span><br><span class="line">		// the view because state has been updated!</span><br><span class="line"> 		setState(() &#123;</span><br><span class="line"> 			this.counter++;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line">	// gotta have that build method!</span><br><span class="line">	Widget build(context) &#123;</span><br><span class="line">		return new RaisedButton(</span><br><span class="line">			onPressed: increaseCount,</span><br><span class="line">			child: new Text(&apos;Tap to Increase&apos;),</span><br><span class="line">		);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="material-and-cupertino-widgets">Material and Cupertino Widgets</h2>
-<p>플러터 SDK가 특별히 좋은점은 <code>Android</code>와 <code>iOS</code> 스타일의 위젯을 내장하고 있다는 것이다.<br>
-감정을 분출해서 미안하지만(역자주: 글쓴이가 플러터에서 기본 제공하는 머터리얼과 쿠퍼티노 위젯 제공에 대해 너무 좋아함을 말하는듯함) 플러터가 상자에서 꺼내준것은 꽤 놀랍다. 여러분이 별도의 디자인 능력 없이도 꽤 보기 좋고 접근하기 쉬운 모바일 앱을 만들 수 있다.</p>
-<p>만약 여러분이 새로운 React, Vue, React Native 등의 프로젝트를 시작했다고 상상해 보자. 그러면 디자인 표준을 염두에 둔 수백가지(수많은)의 구성 요소들이 필요할 것이다.<br>
-이것이 Material과 Cupertino 위젯의 역할이다. Android앱처럼 보여주게 디자인된 Material과 iOS처럼 보여주게 디자인된 Cupertino.(역자주: 새로운 프로젝트를 위해서 수 많은 UI컴포넌트들이 필요한데 이런 작업들을 편리하도록 플러터는 Android와 iOS UI스타일에 맞게 디자인된 Material과 Cupertino 위젯음 기본 제공하므로 굉장히 편리하다.)</p>
-<p>위젯에 내장된 이러한 기능과 완전한 사용자 정의 위젯을 만드는 능력은 당신에게 많은 힘(도움)을 준다. low-level custom 위젯으로 완전한 custom앱을 만들거나 MVP(역자주 : Minimum Value Product - 최소 기능 제품)에 도달하기 위해 주어진 기능을 사용하여 만들 수도 있다.</p>
-<h2 id="most-common-widgets">Most Common Widgets</h2>
-<p>다음은 즉시 사용할 준비가 된 위젯이다. 다음과 같은 위젯에 매우 익숙해 져야 한다.</p>
-<ul>
-<li>Text : 단순히 화면에 텍스트를 표시하는 위젯.</li>
-<li>Image : 이미지를 표시.</li>
-<li>Icon : 플러터의 내장된 Material과 Cupertino 아이콘을 표시.</li>
-<li>Container : 플러터 UI에서 <code>div</code> 같은거라 보면 됌. 패딩, 정렬, 위젯의 크기 조절, 다른 것들의 boatloads(역자주: 앞서 설명한 요소들을 담을 수 있는것) 를 추가 할 수 있는 편리한 위젯. 비어 있을땐 0px 공간을 차지함.</li>
-<li>TextInput : 사용자 의견을 처리.(역자주: 사용자 입력 폼)</li>
-<li>Row, Column : 수평 또는 수직 방향으로 child(자식) 목록을 표시. 레이아웃을 위한 <code>flex-box</code> 규칙을 따른다.</li>
-<li>Stack : 스택은 하나 이상의 다른 자식을 목록에 표시한다. 이 기능은 CSS의 <code>position</code> 속성과 매우 유사하다.</li>
-<li>Scaffold : 앱의 기본 레이아웃 구조를 제공하는 앱내 모든 페이지의 root이다. <code>bottom navigations</code>(하단 메뉴), <code>appBar</code>(상단 타이틀 bar), <code>back buttons</code> (이전 버튼) 등을 쉽게 구현 할 수 있다.</li>
-</ul>
-<p>플러터의 위젯 문서는 굉장히 훌륭하다. <a href="https://flutter.io/widgets/" target="_blank" rel="noopener">목록</a>을 확인해 봐라.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">주의: 여러분이 React같은 컴포넌트 기반 프레임워크에 익숙하다면 내용을 읽지 않아도 된다. 위젯은 단지 컴포넌트 일 뿐이다.</span><br></pre></td></tr></table></figure>
-<h2 id="thinking-in-widgets">Thinking in Widgets</h2>
-<p>플러터에서 모든것이 위젯이다(역자주: 몇번에 걸쳐 말하는거 보니 엄청 중요하겠죠? ㅋ)<br>
-위젯은 완벽한 앱을 만들기 위해 결합 할수 있는 아주 작은 UI덩어리 입니다. 플러터로 앱을 만드는 것은 레고 블록을 하나씩 조립해서 만드는것과 같다.<br>
-위젯은 앱을 만들기 위해 내부에 서로 중첩된다. 여러분의 앱의 root 또한 위젯이며 모든 위제들은 하위로 쭉 내려간다.</p>
-<p>플러터는 UI의 모든 측면(aspect)이 위젯으로 처리된다는 점에서 독특합니다.</p>
-<p>위젯은 무언가를 표시하거나, 디자인을 정의하거나, 레이아웃 처리를 하거나, 상호 작용을 처리 할 수 있다. 다시 한번 강조하지만 플러터의 모든것은 <code>Widget</code> 이다.</p>
-<ul>
-<li>텍스트를 표시하는 간단한 위젯 : <code>const Text('Hello World')</code></li>
-<li>사용자 상호작용을 처리하는 간단한 위젯 : <code>const Button(onTaps: ...callback...)</code></li>
-<li>배경색상을 추가 하는 간단한 위젯 : <code>const BoxDecoration(background: Colors.blue)</code></li>
-</ul>
-<p>기본적으로 여러분의 CSS, HTML 및 자바스크립트가 모두 위젯에서 처리된다고 상상해 보자. 마크업이 없고, CSS도 없다. 오직 위젯이다.</p>
-<h2 id="widget-hierarchy">Widget Hierarchy</h2>
-<p>아래 그림에서 윤곽선으로 보이는 모든 것이 위젯이다.<br>
-<img src="https://res.cloudinary.com/ericwindmill/image/upload/v1527539536/flutter_by_example/thinking_in_widgets.png" alt="outlined widget"></p>
-<p>이 그림은 <code>FlutterByExample</code>의 튜토리얼 앱 중 하나에서 가져온 것으로, 강아지(dog) 정보에 대한 세부 페이지 정보 이다.</p>
-<p>녹색 윤곽선은 page를 나타낸다. 그리고 페이지는  플러터의 위젯이다. 파란색 윤곽선은 논리적으로 그룹화된 UI 조각을 나타낸다. 나머지는 흰색으로 윤곽이 그려져 있고, 이는 단순히 내용과는 상관없는 아둔한 컴포넌트(dump component)일 뿐이고, 이것들은 단지 그들이 전달받는 것을 보여줄 뿐이다.</p>
-<p>다음은 이 페이지의 위젯 계층도 이다.</p>
-<ul>
-<li>PageWidget
-<ul>
-<li>DogProfileWidget</li>
-<li>CircleImage</li>
-<li>Text</li>
-<li>Text</li>
-<li>Text</li>
-<li>Container
-<ul>
-<li>Icon</li>
-<li>Text</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>RateDogWidget</li>
-<li>Slider</li>
-<li>Text</li>
-<li>SubmitButton</li>
-</ul>
-<p><em>주의</em> 위 계층은 아주 정확하진 않다. 여기엔 <code>column</code> 및 <code>padding</code>과 같은 위젯도 있다.</p>
-<h2 id="design-for-re-usability">Design for Re-usability</h2>
-<p>플러터 위젯을 효과적으로 사용하는 가장 중요한 부분은 재사용 할 수 있도록 가장 저수준의 위젯을(lowest level) 디자인 하는 것이다.</p>
-<p>예를들어 위 위젯계층 구조에서 <code>CircleImage</code> 위젯은 다음과 같다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class CircleImage extends StatelessWidget &#123;</span><br><span class="line"> final String renderUrl;</span><br><span class="line"></span><br><span class="line"> CircleImage(this.renderUrl);</span><br><span class="line"></span><br><span class="line"> @override</span><br><span class="line"> Widget build(BuildContext context) &#123;</span><br><span class="line">   return new Container(</span><br><span class="line">    width: 100.0,</span><br><span class="line">    height: 100.0,</span><br><span class="line">    decoration: new BoxDecoration(</span><br><span class="line">      shape: BoxShape.circle,</span><br><span class="line">      image: new DecorationImage(</span><br><span class="line">        fit: BoxFit.cover,</span><br><span class="line">        image: new NetworkImage(renderUrl ?? &apos;&apos;),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>그런 다음 앱의 어느 곳에서나 이 위젯을 다시 사용할 수 있다. 이렇게요 ( <code>new CircleImage(https...)</code> ) 이 컴포넌트는 재사용성을 고려 하여 설계 되었으므로 여러분은 특정 크기의 둥근이미지를 원하는 앱의 어느 곳에서든 url만 전달하면 사용할 수 있다. 그러므로, 굳이 이 위젯을 반복해서 다시 만들 필요는 없다.</p>
-<p>추가적으로 이 원 이미지는(역자주: CircleImage 컴포넌트) 어떤 이미지를 나타내야 하는지 전혀 신경쓰지 않고 있다. 이것은 단지 컴포넌트의 스타일을 강제할 뿐이다.</p>
-<p>다음 그림은 테스트앱에서 위 컴포넌트가 사용되어진 카드(card)중 하나이다.<br>
-<img src="https://res.cloudinary.com/ericwindmill/image/upload/v1527539533/flutter_by_example/Screen_Shot_2018-05-27_at_12.13.40_PM.png" alt="dogs_of_cards"></p>
-<p><a href="https://github.com/ericwindmill/flutter_by_example_apps/tree/master/basic_flutter_app" target="_blank" rel="noopener">예제소스</a></p>
-
-                    
-                        
-
-                    
-                    
-                        <p>
-                            <a href="/2019/01/24/flutter-study-widgets/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-        <div style="padding-bottom: 5px; border-bottom: 1px solid #eef2f8">
-    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.0/kr/88x31.png"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.
-</div>
-
-        <section id="comments">
-<div class="fb-comments" data-href="
-http://jaceshim.github.io/2019/01/24/flutter-study-widgets/" data-numposts="10"></div>
 </section>
 
     </article>

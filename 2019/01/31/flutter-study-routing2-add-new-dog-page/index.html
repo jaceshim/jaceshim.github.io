@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="JACE SHIM">
+    <title>Routing 2 Add New Dog Page - JACE SHIM</title>
+    <meta name="author" content="Jace Shim">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg"},"articleBody":"Routing 2: Add New Dog Page (강아지 등록 페이지 추가)\n우리가 만들 페이지는 강아지를 추가하는 페이지이다.\n다음 섹션에서 사용자 입력을 처리하는 방법을 보여주겠지만, 지금 해당 경로를 추가하는 것이 좋다.\n1. Add NewDogPage\nlib폴더에 new_dog_form.dart라는 파일을 신규로 생성한다.\n이 페이지의 UI는 간단하다:\n\n다음은 기능이 없는 코드이다. (다음 섹션에서 사용자 입력 기능을 추가할 예정이다)\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778// new_dog_form.dartimport &apos;package:flutter/material.dart&apos;;class AddDogFormPage extends StatefulWidget &#123;  @override  _AddDogFormPageState createState() =&gt; _AddDogFormPageState();&#125;class _AddDogFormPageState extends State&lt;AddDogFormPage&gt; &#123;  @override  Widget build(BuildContext context) &#123;    // 새로운 페이지는 scaffolding이 필요하다.    return Scaffold(      appBar: AppBar(        title: Text(&apos;Add a new Dog&apos;),        backgroundColor: Colors.black87,      ),      body: Container(        color: Colors.black54,        child: Padding(          padding: const EdgeInsets.symmetric(            vertical: 8.0,            horizontal: 32.0,          ),          child: Column(            children: [              Padding(                padding: const EdgeInsets.only(bottom: 8.0),                // Text Field는 플러터의 기본 입력 위젯이다.                // 이것은 아래에서 볼 수 있는 labelText와 같은 훌륭한UI 및 기능이 내장되어 있다.                child: TextField(                    decoration: InputDecoration(                  labelText: &apos;Name the Pup&apos;,                )),              ),              Padding(                padding: const EdgeInsets.only(bottom: 8.0),                child: TextField(                    decoration: InputDecoration(                  labelText: &quot;Pup&apos;s location&quot;,                )),              ),              Padding(                padding: const EdgeInsets.only(bottom: 8.0),                child: TextField(                  decoration: InputDecoration(                    labelText: &apos;All about the pup&apos;,                  ),                ),              ),              // A Strange situation.              // 이상한 현상.              // 여러분이 다음 섹션에서 추가해야할 앱의 일부는 context를 알아야 하며,              // context를 전달하는 가장 쉬운 방법은 builder 메서드를 사용하는 것이다.              // 그래서 나는 이 button을 Builder에 일종의 &apos;hack&apos;으로 감쌌다.              Padding(                padding: const EdgeInsets.all(16.0),                child: Builder(                  builder: (context) &#123;                    // 기본 Material 디자인 액션 버튼                    return RaisedButton(                      // 만약 onPressed가 null이면 button 은 비활성화(disabled)된다.                      // 이건 필자가 만든 임시 callback 이다.                      onPressed: () =&gt; print(&apos;PRESSED&apos;),                      color: Colors.indigoAccent,                      child: Text(&apos;Submit Pup&apos;),                    );                  &#125;,                ),              ),            ],          ),        ),      ),    );  &#125;&#125;\n2. Add the Routing\n마지막 섹션과 마찬가지로 등록 페이지는 아직 액세스 할 수 없다. 버튼과 라우팅 정보를 _MyHomePageState 클래스에 추가하자.\n123456789101112131415161718// main.dart@overrideWidget build(BuildContext context) &#123;  return Scaffold(    appBar: AppBar(      title: Text(widget.title),      backgroundColor: Colors.black87,      // Material appBar의 오른쪽 상단에 새로운 버튼을 추가하는 방법이다.      // 여러분이 원하는 만큼 추가 할 수 있다.      actions: [         IconButton(          icon: Icon(Icons.add),          onPressed: _showNewDogForm,        ),      ],    ),  ...\n그러면 앱의 오른쪽 상단 모서리에  플러스 기호 버튼이 추가되고 새로운 경로(route) 를 빌드 하는 메서드를 추가 할 수 있다.\nmain.dart에 new_dog_form.dart import.\n1234567// main.dartimport &apos;package:flutter/material.dart&apos;;import &apos;dog_list.dart&apos;;import &apos;dog_model.dart&apos;;import &apos;new_dog_form.dart&apos;;\n아래 코드를 _MyHomePageState 클래스 아무곳에나 추가하자.\n12345678910111213141516171819// 새로운 경로를 pushing하고 그 경로가 여러분에게 되돌아 오기를 기대할때마다 여러분은 비동기 함수(async funtion)를 사용해야 한다.// 이 경우 함수는 사용자가 작성하고 제출 할 수 있는 양식 페이지를 만든다.// 제출시(submission) 해당 페이지의 정보가 이 함수로 다시 전달 된다.Future _showNewDogForm() async &#123;  // push a new route like you did in the last section  Dog newDog = await Navigator.of(context).push(    MaterialPageRoute(      builder: (BuildContext context) &#123;        return AddDogFormPage();      &#125;,    ),  );  // 사용자가 양식을 입력했는지를 확인하기 위한 null 검사.   if (newDog != null) &#123;    // 새로운 강아지 정보를 강아지 목록에 추가.    initialDoggos.add(newDog);  &#125;&#125;\n","dateCreated":"2019-01-31T11:04:08+09:00","dateModified":"2019-02-03T11:36:39+09:00","datePublished":"2019-01-31T11:04:08+09:00","description":"","headline":"Routing 2 Add New Dog Page","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/"},"publisher":{"@type":"Organization","name":"Jace Shim","sameAs":["https://github.com/jaceshim"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/","keywords":"flutter, Routing, Pages"}</script>
+    <meta name="description" content="Routing 2: Add New Dog Page (강아지 등록 페이지 추가) 우리가 만들 페이지는 강아지를 추가하는 페이지이다. 다음 섹션에서 사용자 입력을 처리하는 방법을 보여주겠지만, 지금 해당 경로를 추가하는 것이 좋다. 1. Add NewDogPage lib폴더에 new_dog_form.dart라는 파일을 신규로 생성한다. 이 페이지의 UI는 간단">
+<meta name="keywords" content="flutter,Routing,Pages">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Routing 2 Add New Dog Page">
+<meta property="og:url" content="http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/index.html">
+<meta property="og:site_name" content="JACE SHIM">
+<meta property="og:description" content="Routing 2: Add New Dog Page (강아지 등록 페이지 추가) 우리가 만들 페이지는 강아지를 추가하는 페이지이다. 다음 섹션에서 사용자 입력을 처리하는 방법을 보여주겠지만, 지금 해당 경로를 추가하는 것이 좋다. 1. Add NewDogPage lib폴더에 new_dog_form.dart라는 파일을 신규로 생성한다. 이 페이지의 UI는 간단">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521390457/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_09.27.27.png">
+<meta property="og:updated_time" content="2019-02-03T02:36:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Routing 2 Add New Dog Page">
+<meta name="twitter:description" content="Routing 2: Add New Dog Page (강아지 등록 페이지 추가) 우리가 만들 페이지는 강아지를 추가하는 페이지이다. 다음 섹션에서 사용자 입력을 처리하는 방법을 보여주겠지만, 지금 해당 경로를 추가하는 것이 좋다. 1. Add NewDogPage lib폴더에 new_dog_form.dart라는 파일을 신규로 생성한다. 이 페이지의 UI는 간단">
+<meta name="twitter:image" content="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521390457/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_09.27.27.png">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://jaceshim.github.io/assets/images/profile.jpg"/>
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css">	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css">      
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-z2svfddshdg8rqvbyid44co3r0i37pnbeahhkfyhfvdbvar6nl9d0d5visho.min.css">
+    <!--STYLES END-->  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132758769-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132758769-1');
+    </script>
+
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">JACE SHIM</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=132871117350090&autoLogAppEvents=1&colorscheme=light&order_by=time";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">Jace Shim</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/jaceshim" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Routing 2 Add New Dog Page
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-01-31T11:04:08+09:00">
+	
+		    Jan 31, 2019
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/flutter/">flutter</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1>Routing 2: Add New Dog Page (강아지 등록 페이지 추가)</h1>
+<p>우리가 만들 페이지는 강아지를 추가하는 페이지이다.<br>
+다음 섹션에서 사용자 입력을 처리하는 방법을 보여주겠지만, 지금 해당 경로를 추가하는 것이 좋다.</p>
+<h2 id="1-add-newdogpage">1. Add NewDogPage</h2>
+<p><code>lib</code>폴더에 <code>new_dog_form.dart</code>라는 파일을 신규로 생성한다.</p>
+<p>이 페이지의 UI는 간단하다:<br>
+<img src="https://res.cloudinary.com/ericwindmill/image/upload/c_scale,w_300/v1521390457/flutter_by_example/Simulator_Screen_Shot_-_iPhone_X_-_2018-03-18_at_09.27.27.png" alt="newdogpage"></p>
+<p>다음은 기능이 없는 코드이다. (다음 섹션에서 사용자 입력 기능을 추가할 예정이다)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">// new_dog_form.dart</span><br><span class="line"></span><br><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line"></span><br><span class="line">class AddDogFormPage extends StatefulWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  _AddDogFormPageState createState() =&gt; _AddDogFormPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class _AddDogFormPageState extends State&lt;AddDogFormPage&gt; &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    // 새로운 페이지는 scaffolding이 필요하다.</span><br><span class="line">    return Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(&apos;Add a new Dog&apos;),</span><br><span class="line">        backgroundColor: Colors.black87,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        color: Colors.black54,</span><br><span class="line">        child: Padding(</span><br><span class="line">          padding: const EdgeInsets.symmetric(</span><br><span class="line">            vertical: 8.0,</span><br><span class="line">            horizontal: 32.0,</span><br><span class="line">          ),</span><br><span class="line">          child: Column(</span><br><span class="line">            children: [</span><br><span class="line">              Padding(</span><br><span class="line">                padding: const EdgeInsets.only(bottom: 8.0),</span><br><span class="line">                // Text Field는 플러터의 기본 입력 위젯이다.</span><br><span class="line">                // 이것은 아래에서 볼 수 있는 labelText와 같은 훌륭한UI 및 기능이 내장되어 있다.</span><br><span class="line">                child: TextField(</span><br><span class="line">                    decoration: InputDecoration(</span><br><span class="line">                  labelText: &apos;Name the Pup&apos;,</span><br><span class="line">                )),</span><br><span class="line">              ),</span><br><span class="line">              Padding(</span><br><span class="line">                padding: const EdgeInsets.only(bottom: 8.0),</span><br><span class="line">                child: TextField(</span><br><span class="line">                    decoration: InputDecoration(</span><br><span class="line">                  labelText: &quot;Pup&apos;s location&quot;,</span><br><span class="line">                )),</span><br><span class="line">              ),</span><br><span class="line">              Padding(</span><br><span class="line">                padding: const EdgeInsets.only(bottom: 8.0),</span><br><span class="line">                child: TextField(</span><br><span class="line">                  decoration: InputDecoration(</span><br><span class="line">                    labelText: &apos;All about the pup&apos;,</span><br><span class="line">                  ),</span><br><span class="line">                ),</span><br><span class="line">              ),</span><br><span class="line">              // A Strange situation.</span><br><span class="line">              // 이상한 현상.</span><br><span class="line">              // 여러분이 다음 섹션에서 추가해야할 앱의 일부는 context를 알아야 하며,</span><br><span class="line">              // context를 전달하는 가장 쉬운 방법은 builder 메서드를 사용하는 것이다.</span><br><span class="line">              // 그래서 나는 이 button을 Builder에 일종의 &apos;hack&apos;으로 감쌌다.</span><br><span class="line">              Padding(</span><br><span class="line">                padding: const EdgeInsets.all(16.0),</span><br><span class="line">                child: Builder(</span><br><span class="line">                  builder: (context) &#123;</span><br><span class="line">                    // 기본 Material 디자인 액션 버튼</span><br><span class="line">                    return RaisedButton(</span><br><span class="line">                      // 만약 onPressed가 null이면 button 은 비활성화(disabled)된다.</span><br><span class="line">                      // 이건 필자가 만든 임시 callback 이다.</span><br><span class="line">                      onPressed: () =&gt; print(&apos;PRESSED&apos;),</span><br><span class="line">                      color: Colors.indigoAccent,</span><br><span class="line">                      child: Text(&apos;Submit Pup&apos;),</span><br><span class="line">                    );</span><br><span class="line">                  &#125;,</span><br><span class="line">                ),</span><br><span class="line">              ),</span><br><span class="line">            ],</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-add-the-routing">2. Add the Routing</h2>
+<p>마지막 섹션과 마찬가지로 등록 페이지는 아직 액세스 할 수 없다. 버튼과 라우팅 정보를 <code>_MyHomePageState</code> 클래스에 추가하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// main.dart</span><br><span class="line"></span><br><span class="line">@override</span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  return Scaffold(</span><br><span class="line">    appBar: AppBar(</span><br><span class="line">      title: Text(widget.title),</span><br><span class="line">      backgroundColor: Colors.black87,</span><br><span class="line">      // Material appBar의 오른쪽 상단에 새로운 버튼을 추가하는 방법이다.</span><br><span class="line">      // 여러분이 원하는 만큼 추가 할 수 있다.</span><br><span class="line">      actions: [</span><br><span class="line">         IconButton(</span><br><span class="line">          icon: Icon(Icons.add),</span><br><span class="line">          onPressed: _showNewDogForm,</span><br><span class="line">        ),</span><br><span class="line">      ],</span><br><span class="line">    ),</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<p>그러면 앱의 오른쪽 상단 모서리에  플러스 기호 버튼이 추가되고 새로운 경로(route) 를 빌드 하는 메서드를 추가 할 수 있다.</p>
+<p><code>main.dart</code>에 <code>new_dog_form.dart</code> import.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main.dart</span><br><span class="line"></span><br><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line"></span><br><span class="line">import &apos;dog_list.dart&apos;;</span><br><span class="line">import &apos;dog_model.dart&apos;;</span><br><span class="line">import &apos;new_dog_form.dart&apos;;</span><br></pre></td></tr></table></figure>
+<p>아래 코드를 <code>_MyHomePageState</code> 클래스 아무곳에나 추가하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 새로운 경로를 pushing하고 그 경로가 여러분에게 되돌아 오기를 기대할때마다 여러분은 비동기 함수(async funtion)를 사용해야 한다.</span><br><span class="line">// 이 경우 함수는 사용자가 작성하고 제출 할 수 있는 양식 페이지를 만든다.</span><br><span class="line">// 제출시(submission) 해당 페이지의 정보가 이 함수로 다시 전달 된다.</span><br><span class="line">Future _showNewDogForm() async &#123;</span><br><span class="line">  // push a new route like you did in the last section</span><br><span class="line">  Dog newDog = await Navigator.of(context).push(</span><br><span class="line">    MaterialPageRoute(</span><br><span class="line">      builder: (BuildContext context) &#123;</span><br><span class="line">        return AddDogFormPage();</span><br><span class="line">      &#125;,</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  // 사용자가 양식을 입력했는지를 확인하기 위한 null 검사. </span><br><span class="line">  if (newDog != null) &#123;</span><br><span class="line">    // 새로운 강아지 정보를 강아지 목록에 추가.</span><br><span class="line">    initialDoggos.add(newDog);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Pages/">Pages</a> <a class="tag tag--primary tag--small t-link" href="/tags/Routing/">Routing</a> <a class="tag tag--primary tag--small t-link" href="/tags/flutter/">flutter</a>
+
+            </div>
+        
+        <div style="padding-bottom: 5px; border-bottom: 1px solid #eef2f8">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.0/kr/88x31.png"></a><br>이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.
+</div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/30/flutter-study-routing1-pages-on-the-fly/" data-tooltip="Routing 1 - Pages on the Fly" aria-label="NEXT: Routing 1 - Pages on the Fly">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        <section id="comments">
+<div class="fb-comments" data-href="
+http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/" data-numposts="10"></div>
+</section>
+
+        
+            <!--  -->
+        
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Jace Shim. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/30/flutter-study-routing1-pages-on-the-fly/" data-tooltip="Routing 1 - Pages on the Fly" aria-label="NEXT: Routing 1 - Pages on the Fly">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://jaceshim.github.io/2019/01/31/flutter-study-routing2-add-new-dog-page/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">Jace Shim</h4>
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-t7ijpwgqnsx79bzheqqud5n5dakbwan6eiq5msjhe0zsxvect7dvc4pvkcpc.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+
+    </body>
+</html>
